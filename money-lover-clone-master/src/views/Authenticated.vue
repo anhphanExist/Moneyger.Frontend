@@ -37,11 +37,11 @@ export default {
   data() {
     return {
       menuItems: [
-        { id: "1", item: "Transaction", router: "Yes", to: "/transaction" },
-        { id: "2", item: "Wallet", router: "Yes", to: "/wallet" },
-        { id: "3", item: "Report", router: "Yes", to: "/report" },
-        { id: "4", item: "Budget", router: "Yes", to: "/budget" },
-        { id: "5", item: "Help", router: "Yes", to: "/help" }
+        { id: "1", item: "Transaction", router: "Yes", to: "/authenticated" },
+        { id: "2", item: "Wallet", router: "Yes", to: "/authenticated/wallet" },
+        { id: "3", item: "Report", router: "Yes", to: "/authenticated/report" },
+        { id: "4", item: "Budget", router: "Yes", to: "/authenticated/budget" },
+        { id: "5", item: "Help", router: "Yes", to: "/authenticated/help" }
       ]
     };
   }

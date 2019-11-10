@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import Divider from "./global/Divider";
+import Divider from "../app/Divider.vue";
 
 export default {
   name: "transaction",

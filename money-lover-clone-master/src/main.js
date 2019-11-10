@@ -12,7 +12,8 @@ Vue.config.productionTip = false;
 
 // 3. Create the router instance and pass the `routes` option
 const router = new VueRouter({
-  routes // short for `routes: routes`
+  routes,
+  mode: "history"
 });
 
 new Vue({
