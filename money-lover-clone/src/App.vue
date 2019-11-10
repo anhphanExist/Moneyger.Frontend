@@ -6,14 +6,12 @@
 
 <script>
 export default {
-  name: 'app',
-  components: {
-  },
+  name: "app",
+  components: {},
   data() {
-    return {
-    }
+    return {};
   }
-}
+};
 </script>
 
 <style src="./assets/tailwind.css"></style>
