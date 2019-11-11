@@ -1,23 +1,50 @@
+import Vue from "vue";
+import VueRouter from "vue-router";
+
 import Login from "./views/Login.vue";
 import SignUp from "./views/SignUp.vue";
 import Authenticated from "./views/Authenticated.vue";
 import Transaction from "./components/transaction/Transaction.vue";
 import Wallet from "./components/wallet/Wallet.vue";
+import store from "./store/store";
 
-export const routes = [
+Vue.use(VueRouter);
+
+const routes = [
   {
     path: "/login",
     name: "login",
-    component: Login
+    component: Login,
+    beforeEnter(to, from, next) {
+      if (!store.getters.isAuthenticated) {
+        next();
+      } else {
+        next("/authenticated");
+      }
+    }
   },
   {
     path: "/signup",
     name: "signup",
-    component: SignUp
+    component: SignUp,
+    beforeEnter(to, from, next) {
+      if (!store.getters.isAuthenticated) {
+        next();
+      } else {
+        next("/authenticated");
+      }
+    }
   },
   {
     path: "/authenticated",
     component: Authenticated,
+    beforeEnter(to, from, next) {
+      if (store.getters.isAuthenticated) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
     children: [
         {
             path: "transaction",
@@ -45,6 +72,11 @@ export const routes = [
   },
   {
     path: "*",
-    redirect: "/"
+    redirect: "/login"
   }
 ];
+
+export default new VueRouter({
+  mode: 'history', 
+  routes
+});

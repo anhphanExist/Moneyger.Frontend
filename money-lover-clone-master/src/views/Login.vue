@@ -48,7 +48,7 @@
           >Sign Up</router-link>
         </div>
       </div>
-
+      <p class="text-red-500 text-xs italic">{{ errors }}</p>
       <!-- Redirect to Sign Up -->
       <div class="text-center">
         <a
@@ -66,9 +66,13 @@ export default {
   data() {
     return {
       username: "",
-      password: "",
-      errors: []
+      password: ""
     };
+  },
+  computed: {
+    errors() {
+      return this.$store.getters.loginErrors;
+    }
   },
   validations: {
       username: {

@@ -103,6 +103,11 @@ export default {
       confirmPassword: ""
     }
   },
+  computed: {
+    errors() {
+      return this.$store.getters.signupErrors;
+    }
+  },
   validations: {
     username: {
       required,
