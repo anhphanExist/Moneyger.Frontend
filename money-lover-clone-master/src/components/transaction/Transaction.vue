@@ -52,7 +52,7 @@
     </div>
 
     <divider />
-
+    
     <div class="w-100 flex flex-col">
       <div
         class="w-full bg-white flex flex-col"
@@ -60,6 +60,9 @@
         :key="index"
       >
         <div class="w-full flex flex-col px-12 pt-12 pb-6">
+          <transaction-day-group></transaction-day-group>
+
+          
           <div class="w-full flex justify-between text-lg font-semibold">
             <div
               class="time"
@@ -93,11 +96,13 @@
 
 <script>
 import Divider from "../app/Divider.vue";
+import Box from "./Box.vue";
 
 export default {
   name: "transaction",
   components: {
-    divider: Divider
+    divider: Divider,
+    transactionDayGroup: Box
   },
   data() {
     return {

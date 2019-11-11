@@ -7,10 +7,10 @@
         <div class="w-1/5 h-full bg-white z-50">
           <!-- Menu Buttons -->
           <div v-for="item in menuItems" :key="item.id">
-            <menuButton v-if="item.router === 'Yes'" :to="item.to">{{
+            <menu-button v-if="item.router === 'Yes'" :to="item.to">{{
               item.item
-            }}</menuButton>
-            <menuButton v-else>{{ item.item }}</menuButton>
+            }}</menu-button>
+            <menu-button v-else>{{ item.item }}</menu-button>
             <divider />
           </div>
         </div>

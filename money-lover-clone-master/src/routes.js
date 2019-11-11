@@ -20,18 +20,23 @@ export const routes = [
     component: Authenticated,
     children: [
         {
-            path: "/transaction",
+            path: "transaction",
             name: "transaction",
             component: Transaction
         },
         {
-            path: "/wallet",
+            path: "wallet",
+            name: "wallet",
             component: Wallet
         },
         {
             path: "",
-            redirect: "/transaction"
+            redirect: "transaction"
         },
+        {
+          path: "*",
+          redirect: "transaction"
+        }
     ]
   },
   {

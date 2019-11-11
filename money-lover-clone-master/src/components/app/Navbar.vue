@@ -2,7 +2,7 @@
   <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
     <div class="w-1/5">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <span class="font-semibold text-xl tracking-tight">Chigga</span>
+        <span class="font-semibold text-xl tracking-tight">Moneyger</span>
       </div>
     </div>
     <div class="w-3/5">
@@ -28,7 +28,7 @@
             class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
           >
             <option>Phan Anh</option>
-            <option>Nam Anh</option>
+            <option>Thanh Mai</option>
             <option>Đạt Lưu</option>
           </select>
           <div
