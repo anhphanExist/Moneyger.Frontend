@@ -79,7 +79,7 @@
           </router-link>
         </div>
       </div>
-
+      <p class="text-red-500 text-xs italic" v-if="errors.length > 0">{{ errors }}</p>
       <!-- Redirect to Sign Up -->
       <div class="text-center">
         <a

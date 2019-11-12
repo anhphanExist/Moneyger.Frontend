@@ -6,7 +6,7 @@ import SignUp from "./views/SignUp.vue";
 import Authenticated from "./views/Authenticated.vue";
 import Transaction from "./components/transaction/Transaction.vue";
 import Wallet from "./components/wallet/Wallet.vue";
-import store from "./store/store";
+import AddTransaction from "./components/transaction/AddTransaction.vue";
 
 Vue.use(VueRouter);
 
@@ -16,7 +16,7 @@ const routes = [
     name: "login",
     component: Login,
     beforeEnter(to, from, next) {
-      if (!store.getters.isAuthenticated) {
+      if (!localStorage.getItem("user") != null) {
         next();
       } else {
         next("/authenticated");
@@ -28,7 +28,7 @@ const routes = [
     name: "signup",
     component: SignUp,
     beforeEnter(to, from, next) {
-      if (!store.getters.isAuthenticated) {
+      if (!localStorage.getItem("user") != null) {
         next();
       } else {
         next("/authenticated");
@@ -37,9 +37,10 @@ const routes = [
   },
   {
     path: "/authenticated",
+    name: "authenticated",
     component: Authenticated,
     beforeEnter(to, from, next) {
-      if (store.getters.isAuthenticated) {
+      if (localStorage.getItem("user") != null) {
         next();
       } else {
         next("/login");
@@ -50,6 +51,11 @@ const routes = [
             path: "transaction",
             name: "transaction",
             component: Transaction
+        },
+        {
+            path: "add-transaction",
+            name: "addTransaction",
+            component: AddTransaction
         },
         {
             path: "wallet",

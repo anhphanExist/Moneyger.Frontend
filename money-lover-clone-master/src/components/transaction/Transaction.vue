@@ -1,17 +1,8 @@
 <template>
   <div>
     <div
-      class="
-            w-100 h-24
-            bg-white hover:bg-gray-100
-            py-5 px-12
-            text-2xl text-gray-500 font-medium
-            flex justify-start items-center
-            cursor-pointer
-        "
-    >
-      Search ...
-    </div>
+      class="w-100 h-24 bg-white hover:bg-gray-100 py-5 px-12 text-2xl text-gray-500 font-medium flex justify-start items-center cursor-pointer"
+    >Search ...</div>
     <divider />
     <div class="w-100 h-24 bg-gray-400 shadow-inner"></div>
     <divider />
@@ -25,18 +16,14 @@
             <span class="w-1/3 border-t-2"></span>
           </div>
           <div class="w-full flex justify-between text-2xl font-semibold p-5">
-            <span class="w-2/3 text-gray-800">
-              {{ cF.type }}
-            </span>
+            <span class="w-2/3 text-gray-800">{{ cF.type }}</span>
             <span class="w-1/3 flex">
               <span class="w-2/3 text-gray-800">
                 <span v-if="cF.type === 'Inflow'">+</span>
                 <span v-if="cF.type === 'Outflow'">-</span>
               </span>
 
-              <span class="w-1/3 text-right text-gray-600">
-                {{ cF.cash }}
-              </span>
+              <span class="w-1/3 text-right text-gray-600">{{ cF.cash }}</span>
             </span>
           </div>
         </div>
@@ -46,48 +33,14 @@
     <div class="w-100 flex">
       <div
         class="w-full bg-gray-400 hover:bg-gray-600 h-10 text-gray-700 hover:text-gray-200 cursor-pointer font-semibold flex justify-center items-center"
-      >
-        View report for this month
-      </div>
+      >View report for this month</div>
     </div>
 
     <divider />
-    
-    <div class="w-100 flex flex-col">
-      <div
-        class="w-full bg-white flex flex-col"
-        v-for="(transaction, index) in transactions"
-        :key="index"
-      >
-        <div class="w-full flex flex-col px-12 pt-12 pb-6">
-          <transaction-day-group></transaction-day-group>
 
-          
-          <div class="w-full flex justify-between text-lg font-semibold">
-            <div
-              class="time"
-              v-for="(dayTrans, index) in transaction.date"
-              :key="index"
-            >
-              <span class="day">{{ dayTrans.day }}</span
-              >/<span class="month">{{ dayTrans.month }}</span
-              >/<span class="year">{{ dayTrans.year }}</span
-              >, <span class="weekday">{{ dayTrans.date }}</span>
-            </div>
-            <div class="cash">
-              {{ transaction.total }}
-            </div>
-          </div>
-          <div class="w-full border-t-2 my-10"></div>
-          <div
-            class="w-full flex justify-between py-5 px-6 mb-5 border-2"
-            v-for="(transDetails, index) in transaction.trans"
-            :key="index"
-          >
-            <div>{{ transDetails.name }}</div>
-            <div>{{ transDetails.value }}</div>
-          </div>
-        </div>
+    <div class="w-100 flex flex-col">
+      <div class="w-full bg-white flex flex-col">
+        <transaction-day-group></transaction-day-group>
         <divider />
       </div>
     </div>

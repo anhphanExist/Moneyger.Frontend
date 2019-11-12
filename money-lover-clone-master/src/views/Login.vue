@@ -48,7 +48,7 @@
           >Sign Up</router-link>
         </div>
       </div>
-      <p class="text-red-500 text-xs italic">{{ errors }}</p>
+      <p class="text-red-500 text-xs italic" v-if="errors.length > 0">{{ errors }}</p>
       <!-- Redirect to Sign Up -->
       <div class="text-center">
         <a
@@ -95,8 +95,6 @@ export default {
         username: formData.username,
         password: formData.password
       });
-      
-      
       
     }
   }

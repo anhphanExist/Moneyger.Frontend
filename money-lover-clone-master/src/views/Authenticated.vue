@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       menuItems: [
-        { id: "1", item: "Transaction", router: "Yes", to: "/authenticated" },
+        { id: "1", item: "Transaction", router: "Yes", to: "/authenticated/transaction" },
         { id: "2", item: "Wallet", router: "Yes", to: "/authenticated/wallet" },
         { id: "3", item: "Report", router: "Yes", to: "/authenticated/report" },
         { id: "4", item: "Budget", router: "Yes", to: "/authenticated/budget" },
