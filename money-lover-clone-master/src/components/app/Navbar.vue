@@ -4,7 +4,6 @@
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <span class="font-semibold text-xl tracking-tight">Moneyger</span>
       </div>
-      
     </div>
     <div class="w-3/5">
       <div class="block lg:hidden">
@@ -45,7 +44,7 @@
       </div>
     </div>
     <div class="w-1/5 flex justify-end">
-      <AccountDropDown/>
+      <account-drop-down />
       <router-link
         v-bind:to="'add-transaction'"
         class="text-sm px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
@@ -55,10 +54,10 @@
 </template>
 
 <script>
-import AccountDropDown from './AccountDropDown.vue'
+import AccountDropDown from "./AccountDropDown.vue";
 export default {
   components: {
-    AccountDropDown,
+    AccountDropDown
   },
   computed: {
     totalWealth() {
