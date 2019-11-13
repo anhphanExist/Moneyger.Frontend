@@ -38,12 +38,7 @@
 
     <divider />
 
-    <div class="w-100 flex flex-col">
-      <div class="w-full bg-white flex flex-col">
-        <transaction-day-group></transaction-day-group>
-        <divider />
-      </div>
-    </div>
+    <transaction-day-group></transaction-day-group>
   </div>
 </template>
 
@@ -63,53 +58,6 @@ export default {
         { id: "1", type: "Inflow", cash: "$8,000" },
         { id: "2", type: "Outflow", cash: "$4,000" },
         { id: "3", type: "Total", cash: "$4,000" }
-      ],
-      transactions: [
-        {
-          date: [
-            {
-              day: "1",
-              month: "12",
-              year: "2018",
-              date: "Tuesday"
-            }
-          ],
-          total: "$20,000,000",
-          trans: [
-            { type: "Outflow", name: "Movies", value: "$10,000,000" },
-            { type: "Outflow", name: "Books", value: "$10,000,000" }
-          ]
-        },
-        {
-          date: [
-            {
-              day: "15",
-              month: "11",
-              year: "2018",
-              date: "Friday"
-            }
-          ],
-          total: "$40,000,000",
-          trans: [
-            { type: "Outflow", name: "Movies", value: "$20,000,000" },
-            { type: "Outflow", name: "Books", value: "$20,000,000" }
-          ]
-        },
-        {
-          date: [
-            {
-              day: "5",
-              month: "11",
-              year: "2018",
-              date: "Monday"
-            }
-          ],
-          total: "$40,000,000",
-          trans: [
-            { type: "Outflow", name: "Movies", value: "$20,000,000" },
-            { type: "Outflow", name: "Books", value: "$20,000,000" }
-          ]
-        }
       ]
     };
   }
