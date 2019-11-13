@@ -2,7 +2,7 @@
   <div>
     <div
       class="w-100 h-24 bg-white hover:bg-gray-100 py-5 px-12 text-2xl text-gray-500 font-medium flex justify-start items-center cursor-pointer"
-    >Search ...</div>
+    >Select Month and Year here</div>
     <divider />
     <div class="w-100 h-24 bg-gray-400 shadow-inner"></div>
     <divider />
@@ -10,22 +10,37 @@
     <!-- Cash Flow -->
     <div class="flex">
       <div class="w-full bg-white flex flex-col p-12">
-        <div v-for="cF in cashFlow" :key="cF.id">
-          <div class="w-full flex" v-if="cF.type === 'Total'">
-            <span class="w-2/3"></span>
-            <span class="w-1/3 border-t-2"></span>
-          </div>
-          <div class="w-full flex justify-between text-2xl font-semibold p-5">
-            <span class="w-2/3 text-gray-800">{{ cF.type }}</span>
-            <span class="w-1/3 flex">
-              <span class="w-2/3 text-gray-800">
-                <span v-if="cF.type === 'Inflow'">+</span>
-                <span v-if="cF.type === 'Outflow'">-</span>
-              </span>
-
-              <span class="w-1/3 text-right text-gray-600">{{ cF.cash }}</span>
+        <div class="w-full flex justify-between text-2xl font-semibold p-5">
+          <span class="w-2/3 text-gray-800">Inflow</span>
+          <span class="w-1/3 flex">
+            <span class="w-2/3 text-gray-800">
+              <p>+</p>
             </span>
-          </div>
+            <span class="w-1/3 text-right text-gray-600">${{ transactionMonthGroup.inflow }}</span>
+          </span>
+        </div>
+
+        <div class="w-full flex justify-between text-2xl font-semibold p-5">
+          <span class="w-2/3 text-gray-800">Outflow</span>
+          <span class="w-1/3 flex">
+            <span class="w-2/3 text-gray-800">
+              <p>-</p>
+            </span>
+            <span class="w-1/3 text-right text-gray-600">${{ transactionMonthGroup.outflow }}</span>
+          </span>
+        </div>
+
+        <div class="w-full flex">
+          <span class="w-2/3"></span>
+          <span class="w-1/3 border-t-2"></span>
+        </div>
+
+        <div class="w-full flex justify-between text-2xl font-semibold p-5">
+          <span class="w-2/3 text-gray-800">Total</span>
+          <span class="w-1/3 flex">
+            <span class="w-2/3 text-gray-800"></span>
+          </span>
+          <span class="w-1/3 text-right text-gray-600">${{ transactionMonthGroup.inOutRate }}</span>
         </div>
       </div>
     </div>
@@ -38,7 +53,7 @@
 
     <divider />
 
-    <transaction-day-group></transaction-day-group>
+    <transaction-day-groups></transaction-day-groups>
   </div>
 </template>
 
@@ -50,16 +65,19 @@ export default {
   name: "transaction",
   components: {
     divider: Divider,
-    transactionDayGroup: Box
+    transactionDayGroups: Box
   },
-  data() {
-    return {
-      cashFlow: [
-        { id: "1", type: "Inflow", cash: "$8,000" },
-        { id: "2", type: "Outflow", cash: "$4,000" },
-        { id: "3", type: "Total", cash: "$4,000" }
-      ]
-    };
+  computed: {
+    transactionMonthGroup() {
+      return this.$store.getters.transactionMonthGroup;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getTransactionMonthGroup", {
+      month: 1,
+      year: 2000,
+      walletName: "User0.Wallet0"
+    });
   }
 };
 </script>

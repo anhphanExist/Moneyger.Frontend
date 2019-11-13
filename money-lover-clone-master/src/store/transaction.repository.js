@@ -1,62 +1,62 @@
-const state = {
-  transactionDayGroups: [
-    {
-      date: [
-        {
-          day: "1",
-          month: "12",
-          year: "2018",
-          date: "Tuesday"
-        }
-      ],
-      total: "$20,000,000",
-      trans: [
-        { type: "Outflow", name: "Movies", value: "$10,000,000" },
-        { type: "Outflow", name: "Books", value: "$10,000,000" }
-      ]
-    },
-    {
-      date: [
-        {
-          day: "15",
-          month: "11",
-          year: "2018",
-          date: "Friday"
-        }
-      ],
-      total: "$40,000,000",
-      trans: [
-        { type: "Outflow", name: "Movies", value: "$20,000,000" },
-        { type: "Outflow", name: "Books", value: "$20,000,000" }
-      ]
-    },
-    {
-      date: [
-        {
-          day: "5",
-          month: "11",
-          year: "2018",
-          date: "Monday"
-        }
-      ],
-      total: "$40,000,000",
-      trans: [
-        { type: "Outflow", name: "Movies", value: "$20,000,000" },
-        { type: "Outflow", name: "Books", value: "$20,000,000" }
-      ]
-    }
-  ]
-};
+import axios from "axios";
 
-const getters = {
-  transactionDayGroups(state) {
-    return state.transactionDayGroups;
+const state = {
+  transactionMonthGroup: {
+    month: 11,
+    year: 2019,
+    inflow: 19.0,
+    outflow: 0.0,
+    inOutRate: 19.0,
+    transactionDayGroups: [
+      {
+        date: "2019-11-11T00:00:00",
+        inflow: 19.0,
+        outflow: 0.0,
+        transactions: [
+          {
+            walletName: "User0.Wallet0",
+            categoryName: "Category0",
+            amount: 9.0,
+            date: "2019-11-11T00:00:00"
+          },
+          {
+            walletName: "User0.Wallet0",
+            categoryName: "Category0",
+            amount: 10.0,
+            date: "2019-11-11T00:00:00"
+          }
+        ]
+      }
+    ]
   }
 };
 
-const mutations = {};
+const getters = {
+  transactionMonthGroup(state) {
+    return state.transactionMonthGroup;
+  }
+};
 
-const actions = {};
+const mutations = {
+  getTransactionMonthGroup(state, transactionMonthGroupResponseDTO) {
+    state.transactionMonthGroup = transactionMonthGroupResponseDTO;
+  }
+};
+
+const actions = {
+  getTransactionMonthGroup({ commit }, transactionMonthGroupRequestDTO) {
+    axios
+      .post("/transaction/get-transaction-month-group", {
+        month: transactionMonthGroupRequestDTO.month,
+        year: transactionMonthGroupRequestDTO.year,
+        walletName: transactionMonthGroupRequestDTO.walletName
+      })
+      .then(res => {
+        commit("getTransactionMonthGroup", { ...res.data });
+      })
+      .catch(error => console.log(error));
+  }
+};
 
 export default {
   state,
