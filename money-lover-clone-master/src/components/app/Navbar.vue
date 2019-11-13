@@ -4,6 +4,7 @@
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <span class="font-semibold text-xl tracking-tight">Moneyger</span>
       </div>
+      
     </div>
     <div class="w-3/5">
       <div class="block lg:hidden">
@@ -17,12 +18,7 @@
         </button>
       </div>
       <div class="text-sm lg:flex-grow">
-        <div class="inline-block">
-          <button
-            class="text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-            v-on:click="onLogout"
-          >Logout</button>
-        </div>
+        <!-- Wallet region -->
         <div class="inline-block mr-4 text-white font-bold">Wallet</div>
 
         <div class="inline-block relative w-64">
@@ -49,16 +45,21 @@
       </div>
     </div>
     <div class="w-1/5 flex justify-end">
+      <AccountDropDown/>
       <router-link
         v-bind:to="'add-transaction'"
-        class="text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+        class="text-sm px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
       >Add Transaction</router-link>
     </div>
   </nav>
 </template>
 
 <script>
+import AccountDropDown from './AccountDropDown.vue'
 export default {
+  components: {
+    AccountDropDown,
+  },
   computed: {
     totalWealth() {
       return 20000000;
