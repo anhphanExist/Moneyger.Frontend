@@ -21,7 +21,7 @@
             
             <div class="w-full flex mb-5">
               <label for="add-wallet-id" class="flex w-1/6 items-center mr-6">Currency</label>
-              <div id="add-wallet-id" class="flex-auto justify-between py-2 px-5 bg-gray-300 text-gray-600 border-2">Vietnam Dong</div>
+              <div id="add-wallet-id" class="flex-auto justify-between py-2 px-5 bg-gray-300 text-gray-600 border-2">VND</div>
             </div>
 
             <div class="flex mt-4 mb-6 md:mb-0 justify-end">
