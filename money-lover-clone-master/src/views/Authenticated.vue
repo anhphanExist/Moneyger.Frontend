@@ -49,7 +49,36 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("listWallet");
+    let self = this;
+    this.$store.dispatch("listWallet").then(res => {
+      console.log(res);
+      let currentDate = new Date();
+      let currentMonth = currentDate.getMonth() + 1;
+      let currentYear = currentDate.getFullYear();
+      let walletList = [...self.$store.getters.walletList];
+      console.log(walletList);
+      let firstWalletName = null;
+      if (walletList.length > 0) {
+        firstWalletName = walletList[0].name;
+      }
+      const getTransactionMonthGroupRequestDTO = {
+        walletName: firstWalletName,
+        month: currentMonth,
+        year: currentYear
+      };
+      self.$store.dispatch(
+        "getTransactionMonthGroup",
+        getTransactionMonthGroupRequestDTO
+      );
+    });
+
+    // await this.$store.dispatch(
+    //   "getTransactionMonthGroup",
+    //   getTransactionMonthGroupRequestDTO
+    // );
+  },
+  updated() {
+    console.log("UPDATED DUE TO REACTIVITY");
   }
 };
 </script>

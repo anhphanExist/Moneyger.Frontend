@@ -46,7 +46,7 @@ const mutations = {
 
 const actions = {
   listWallet({ commit }) {
-    axios
+    return axios
       .post("/wallet/list", {})
       .then(res => {
         commit("listWallet", [...res.data]);
