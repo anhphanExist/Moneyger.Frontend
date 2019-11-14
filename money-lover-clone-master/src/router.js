@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// import NProgress from "vue-nprogress";
 
 import Login from "./views/Login.vue";
 import SignUp from "./views/SignUp.vue";
@@ -13,6 +14,7 @@ import AddWallet from "./components/wallet/AddWallet.vue";
 import EditWallet from "./components/wallet/AddWallet.vue";
 
 Vue.use(VueRouter);
+// Vue.use(NProgress);
 
 const routes = [
   {
@@ -106,7 +108,20 @@ const routes = [
   }
 ];
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: "history",
   routes
 });
+
+// Using NProgress to show progress bar on each router change
+// router.beforeResolve((to, from, next) => {
+//   if (to.path) {
+//     NProgress.start();
+//   }
+//   next();
+// });
+// router.afterEach(() => {
+//   NProgress.done();
+// });
+
+export default router;
