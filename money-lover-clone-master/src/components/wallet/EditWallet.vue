@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <div>EDIT WALLET</div>
+</template>
 
 <script>
 export default {};

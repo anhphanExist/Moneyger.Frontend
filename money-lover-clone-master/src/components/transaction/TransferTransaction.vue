@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <div>TRANSFER TRANSACTION</div>
+</template>
 
 <script>
 export default {};
