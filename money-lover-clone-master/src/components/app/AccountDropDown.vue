@@ -10,9 +10,17 @@
         alt
       />
     </button>
-    <button v-if="isOpen" @click="isOpen=false" class="fixed top-0 right-0 bottom-0 right-0 left-0 h-full w-full cursor-default"></button>
+    <button
+      v-if="isOpen"
+      @click="isOpen=false"
+      class="fixed top-0 right-0 bottom-0 right-0 left-0 h-full w-full cursor-default"
+    ></button>
     <div v-if="isOpen" class="bg-white rounded-lg py-2 absolute w-48 mt-2 shadow-xl">
-      <a href class="block px-4 py-2 text-gray-800 hover:bg-blue-400 hover:text-white">Edit Profile</a>
+      <router-link
+        href
+        class="block px-4 py-2 text-gray-800 hover:bg-blue-400 hover:text-white"
+        v-bind:to="'edit-profile'"
+      >Edit Profile</router-link>
       <a href class="block px-4 py-2 text-gray-800 hover:bg-blue-400 hover:text-white">Support</a>
       <a
         href
