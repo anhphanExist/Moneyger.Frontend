@@ -2,12 +2,13 @@
   <div class="flex">
     <div class="w-1/4 bg-gray-500 h-full"></div>
     <div class="w-1/2 bg-gray-400 h-full p-3 mt-12">
-      <label
+      
+      <form class="w-full max-w-lg m-auto">
+        <label
         for
-        class="block uppercase tracking-wide text-blue-700 text-xl font-bold ml-16"
+        class="block uppercase tracking-wide text-blue-700 text-xl font-bold m-auto"
       >Add Transaction</label>
-      <form class="w-full max-w-lg py-2 ml-16">
-        <div class="flex flex-wrap -mx-3 mb-2">
+        <div class="flex flex-wrap mt-2 -mx-3 mb-6">
           <!-- Wallet select -->
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -115,7 +116,7 @@
           </div>
         </div>
         <!-- Note -->
-        <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="flex flex-wrap -mx-3 mb-3">
           <div class="w-full px-3">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
