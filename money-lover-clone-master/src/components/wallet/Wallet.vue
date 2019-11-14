@@ -8,7 +8,13 @@
       >
         <div class="w-full flex justify-between py-5 px-6 mb-5 border-2">
           <div>{{ wallet.name }}</div>
-          <div>{{ wallet.balance }}</div>
+          <div class="flex text-right">
+            <div class="mr-12">{{ wallet.balance }}</div>
+            <div class="mr-12 hover:text-blue-400 cursor-pointer">Transfer</div>
+            <div class="mr-12 hover:text-blue-400 cursor-pointer">Edit</div>
+            <div class="hover:text-blue-400 cursor-pointer">Delete</div> 
+          </div>
+          
         </div>
       </div>
     </div>
