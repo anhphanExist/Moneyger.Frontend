@@ -2,7 +2,11 @@
   <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
     <div class="w-1/5">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <span class="font-semibold text-xl tracking-tight">Moneyger</span>
+        <router-link
+          tag="span"
+          class="font-semibold text-2xl tracking-tight cursor-pointer"
+          v-bind:to="'transaction'"
+        >Moneyger</router-link>
       </div>
     </div>
     <div class="w-3/5">
@@ -24,8 +28,7 @@
           <select
             class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
           >
-            <option>User0.Wallet0</option>
-            <option>Anh Phan</option>
+            <option v-for="wallet in walletList">{{ wallet.name }}</option>
           </select>
           <div
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -62,6 +65,9 @@ export default {
   computed: {
     totalWealth() {
       return 20000000;
+    },
+    walletList() {
+      return this.$store.getters.walletList;
     }
   },
   methods: {
