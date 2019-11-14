@@ -2,7 +2,8 @@ import axios from "axios";
 
 const state = {
   transactionMonthGroup: null,
-  createTransactionErrors: []
+  createTransactionErrors: [],
+  activeWalletInNavBar: null
 };
 
 const getters = {
@@ -11,6 +12,9 @@ const getters = {
   },
   createTransactionErrors(state) {
     return state.createTransactionErrors;
+  },
+  getActiveWalletInNavBar(state) {
+    return state.activeWalletInNavBar;
   }
 };
 
@@ -20,6 +24,9 @@ const mutations = {
   },
   createTransaction(state, createTransactionErrors) {
     state.createTransactionErrors = createTransactionErrors;
+  },
+  setActiveWalletInNavBar(state, walletName) {
+    state.activeWalletInNavBar = walletName;
   }
 };
 
@@ -33,6 +40,10 @@ const actions = {
       })
       .then(res => {
         commit("getTransactionMonthGroup", { ...res.data });
+        commit(
+          "setActiveWalletInNavBar",
+          transactionMonthGroupRequestDTO.walletName
+        );
       })
       .catch(error => console.log(error));
   },

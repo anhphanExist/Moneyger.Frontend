@@ -27,8 +27,9 @@
         <div class="inline-block relative w-64">
           <select
             class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+            v-model="activeWallet"
           >
-            <option v-for="wallet in walletList">{{ wallet.name }}</option>
+            <option v-for="option in walletNameOptions">{{ option }}</option>
           </select>
           <div
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -47,7 +48,7 @@
       </div>
     </div>
     <div class="w-1/5 flex justify-end">
-      <AccountDropDown/>
+      <AccountDropDown />
       <router-link
         v-bind:to="'add-transaction'"
         class="text-sm px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
@@ -68,6 +69,33 @@ export default {
     },
     walletList() {
       return this.$store.getters.walletList;
+    },
+    walletNameOptions() {
+      let options = ["All Wallet"];
+      let walletList = [...this.$store.getters.walletList];
+      let walletListName = [];
+
+      walletList.forEach(element => {
+        walletListName.push(element.name);
+      });
+      options = options.concat(walletListName);
+
+      return options;
+    },
+    activeWallet: {
+      get() {
+        return this.$store.getters.getActiveWalletInNavBar;
+      },
+      set(value) {
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth() + 1;
+        let currentYear = currentDate.getFullYear();
+        this.$store.dispatch("getTransactionMonthGroup", {
+          walletName: value,
+          month: currentMonth,
+          year: currentYear
+        });
+      }
     }
   },
   methods: {
