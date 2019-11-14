@@ -53,7 +53,7 @@
 
     <divider />
 
-    <transaction-day-groups></transaction-day-groups>
+    <transaction-day-groups v-if="transactionMonthGroup.transactionDayGroups.length > 0"></transaction-day-groups>
   </div>
 </template>
 
@@ -71,15 +71,9 @@ export default {
     transactionMonthGroup() {
       return this.$store.getters.transactionMonthGroup;
     }
-  },
-  mounted() {
-    this.$store.dispatch("getTransactionMonthGroup", {
-      month: 1,
-      year: 2000,
-      walletName: "User0.Wallet0"
-    });
   }
 };
 </script>
 
-<style lang="postcss" scoped></style>
+<style scoped>
+</style>

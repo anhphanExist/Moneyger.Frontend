@@ -83,6 +83,33 @@ export default {
     },
     walletList() {
       return this.$store.getters.walletList;
+    },
+    walletNameOptions() {
+      let options = ["All Wallet"];
+      let walletList = [...this.$store.getters.walletList];
+      let walletListName = [];
+
+      walletList.forEach(element => {
+        walletListName.push(element.name);
+      });
+      options = options.concat(walletListName);
+
+      return options;
+    },
+    activeWallet: {
+      get() {
+        return this.$store.getters.getActiveWalletInNavBar;
+      },
+      set(value) {
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth() + 1;
+        let currentYear = currentDate.getFullYear();
+        this.$store.dispatch("getTransactionMonthGroup", {
+          walletName: value,
+          month: currentMonth,
+          year: currentYear
+        });
+      }
     }
   },
   methods: {
