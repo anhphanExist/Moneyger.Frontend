@@ -7,9 +7,7 @@
         <div class="w-1/5 h-full bg-white z-50">
           <!-- Menu Buttons -->
           <div v-for="item in menuItems" :key="item.id">
-            <menu-button v-if="item.router === 'Yes'" :to="item.to">
-              {{ item.item }}
-            </menu-button>
+            <menu-button v-if="item.router === 'Yes'" :to="item.to">{{ item.item }}</menu-button>
             <menu-button v-else>{{ item.item }}</menu-button>
             <divider />
           </div>
@@ -37,13 +35,21 @@ export default {
   data() {
     return {
       menuItems: [
-        { id: "1", item: "Transaction", router: "Yes", to: "/authenticated/transaction" },
+        {
+          id: "1",
+          item: "Transaction",
+          router: "Yes",
+          to: "/authenticated/transaction"
+        },
         { id: "2", item: "Wallet", router: "Yes", to: "/authenticated/wallet" },
         { id: "3", item: "Report", router: "Yes", to: "/authenticated/report" },
         { id: "4", item: "Budget", router: "Yes", to: "/authenticated/budget" },
         { id: "5", item: "Help", router: "Yes", to: "/authenticated/help" }
       ]
     };
+  },
+  mounted() {
+    this.$store.dispatch("listWallet");
   }
 };
 </script>
