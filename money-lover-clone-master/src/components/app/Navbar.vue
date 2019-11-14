@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="w-1/5 flex justify-end">
-      <account-drop-down />
+      <AccountDropDown/>
       <router-link
         v-bind:to="'add-transaction'"
         class="text-sm px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import AccountDropDown from "./AccountDropDown.vue";
+import AccountDropDown from "./AccountDropDown";
 export default {
   components: {
     AccountDropDown
