@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="w-100 h-24">
-      <div class="w-100 flex flex-col bg-white p-5">
+      <div
+        class="w-100 flex flex-col bg-white p-5"
+        v-for="(wallet, index) in walletList"
+        v-bind:key="index"
+      >
         <div class="w-full flex justify-between py-5 px-6 mb-5 border-2">
-          <div>Award</div>
-          <div>+$40,000,000</div>
+          <div>{{ wallet.name }}</div>
+          <div>{{ wallet.balance }}</div>
         </div>
       </div>
     </div>
@@ -13,7 +17,11 @@
 
 <script>
 export default {
-  
+  computed: {
+    walletList() {
+      return this.$store.getters.walletList;
+    }
+  }
 };
 </script>
 
