@@ -41,10 +41,30 @@ export default {
           router: "Yes",
           to: "/authenticated/transaction"
         },
-        { id: "2", item: "Wallet", router: "Yes", to: "/authenticated/wallet" },
-        { id: "3", item: "Report", router: "Yes", to: "/authenticated/report" },
-        { id: "4", item: "Budget", router: "Yes", to: "/authenticated/budget" },
-        { id: "5", item: "Help", router: "Yes", to: "/authenticated/help" }
+        {
+          id: "2",
+          item: "Wallet",
+          router: "Yes",
+          to: "/authenticated/wallet"
+        },
+        {
+          id: "3",
+          item: "Report",
+          router: "Yes",
+          to: "/authenticated/report"
+        },
+        {
+          id: "4",
+          item: "Budget",
+          router: "Yes",
+          to: "/authenticated/budget"
+        },
+        {
+          id: "5",
+          item: "Help",
+          router: "Yes",
+          to: "/authenticated/help"
+        }
       ]
     };
   },

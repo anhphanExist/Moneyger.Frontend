@@ -7,6 +7,19 @@ import walletRepository from "./wallet.repository";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    currentScreen: "login"
+  },
+  getters: {
+    getCurrentScreen(state) {
+      return state.currentScreen;
+    }
+  },
+  mutations: {
+    setCurrentScreen(state, newScreen) {
+      state.currentScreen = newScreen;
+    }
+  },
   modules: {
     userRepository,
     transactionRepository,

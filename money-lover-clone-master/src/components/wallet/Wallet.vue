@@ -12,9 +12,8 @@
             <div class="mr-12">{{ wallet.balance }}</div>
             <div class="mr-12 hover:text-blue-400 cursor-pointer">Transfer</div>
             <div class="mr-12 hover:text-blue-400 cursor-pointer">Edit</div>
-            <div class="hover:text-blue-400 cursor-pointer">Delete</div> 
+            <div class="hover:text-blue-400 cursor-pointer">Delete</div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -27,6 +26,9 @@ export default {
     walletList() {
       return this.$store.getters.walletList;
     }
+  },
+  mounted() {
+    this.$store.commit("setCurrentScreen", "wallet");
   }
 };
 </script>

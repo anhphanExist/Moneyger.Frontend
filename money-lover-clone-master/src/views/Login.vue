@@ -1,9 +1,6 @@
 <template>
   <div id="login" class="mx-auto py-12 w-10/12 lg:w-2/6 md:w-1/2">
-    <form 
-      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      v-on:submit.prevent="onSubmit"
-      >
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" v-on:submit.prevent="onSubmit">
       <div class="mb-4">
         <h1 class="text-center font-semibold text-2xl md:text-4xl text-gray-800">MONEYGER</h1>
       </div>
@@ -17,8 +14,14 @@
           v-model="username"
           autofocus
         />
-        <p class="text-red-500 text-xs italic" v-if="!$v.username.required">Username must not be empty</p>
-        <p class="text-red-500 text-xs italic" v-if="!$v.username.alphaNum">Username must contains only alphanumeric characters</p>
+        <p
+          class="text-red-500 text-xs italic"
+          v-if="!$v.username.required"
+        >Username must not be empty</p>
+        <p
+          class="text-red-500 text-xs italic"
+          v-if="!$v.username.alphaNum"
+        >Username must contains only alphanumeric characters</p>
       </div>
       <div class="mb-6">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
@@ -29,17 +32,21 @@
           placeholder="******************"
           v-model="password"
         />
-        <p class="text-red-500 text-xs italic" v-if="!$v.password.required">Password must not be empty</p>
-        <p class="text-red-500 text-xs italic" v-if="!$v.password.minLen">Password must be at least 4 characters</p>
+        <p
+          class="text-red-500 text-xs italic"
+          v-if="!$v.password.required"
+        >Password must not be empty</p>
+        <p
+          class="text-red-500 text-xs italic"
+          v-if="!$v.password.minLen"
+        >Password must be at least 4 characters</p>
       </div>
       <div class="flex sm:flex-row flex-col items-center justify-between mb-6 md:mb-16">
-        <button 
+        <button
           type="submit"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2 sm:mb-0 rounded focus:outline-none focus:shadow-outline"
           v-bind:disabled="$v.$invalid"
-        >
-          Login
-        </button>
+        >Login</button>
         <div inline-block align-baseline>
           Do not have an account?
           <router-link
@@ -51,9 +58,10 @@
       <p class="text-red-500 text-xs italic" v-if="errors.length > 0">{{ errors }}</p>
       <!-- Redirect to Sign Up -->
       <div class="text-center">
-        <a
-          class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-        >Forgot Password?<br/>Contact us at anhphan.csf@gmail.com</a>
+        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+          Forgot Password?
+          <br />Contact us at anhphan.csf@gmail.com
+        </a>
       </div>
     </form>
   </div>
@@ -75,14 +83,14 @@ export default {
     }
   },
   validations: {
-      username: {
-          required,
-          alphaNum
-      },
-      password: {
-          required,
-          minLen: minLength(4)
-      }
+    username: {
+      required,
+      alphaNum
+    },
+    password: {
+      required,
+      minLen: minLength(4)
+    }
   },
   methods: {
     onSubmit() {
@@ -90,13 +98,15 @@ export default {
         username: this.username,
         password: this.password
       };
-      
+
       this.$store.dispatch("login", {
         username: formData.username,
         password: formData.password
       });
-      
     }
+  },
+  mounted() {
+    this.$store.commit("setCurrentScreen", "login");
   }
 };
 </script>

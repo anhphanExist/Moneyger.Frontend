@@ -45,16 +45,19 @@
           </div>
         </div>
         <div class="w-1/3 flex justify-end">
-          <AccountDropDown />
           <router-link
             v-bind:to="'add-wallet'"
             class="text-sm mr-3 px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+            v-if="currentScreen == 'wallet'"
           >Add Wallet</router-link>
 
           <router-link
             v-bind:to="'add-transaction'"
             class="text-sm px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+            v-if="currentScreen == 'transaction'"
           >Add Transaction</router-link>
+
+          <AccountDropDown />
         </div>
       </div>
     </div>
@@ -107,6 +110,9 @@ export default {
           year: currentYear
         });
       }
+    },
+    currentScreen() {
+      return this.$store.getters.getCurrentScreen;
     }
   },
   methods: {

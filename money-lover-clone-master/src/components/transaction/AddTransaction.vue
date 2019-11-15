@@ -2,12 +2,11 @@
   <div class="flex">
     <div class="w-1/4 bg-gray-500 h-full"></div>
     <div class="w-1/2 bg-gray-400 h-full p-3 mt-12">
-      
       <form class="w-full max-w-lg m-auto">
         <label
-        for
-        class="block uppercase tracking-wide text-blue-700 text-xl font-bold m-auto"
-      >Add Transaction</label>
+          for
+          class="block uppercase tracking-wide text-blue-700 text-xl font-bold m-auto"
+        >Add Transaction</label>
         <div class="flex flex-wrap mt-2 -mx-3 mb-6">
           <!-- Wallet select -->
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -151,7 +150,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$store.commit("setCurrentTransaction", "addTransaction");
+  }
+};
 </script>
 
 <style>

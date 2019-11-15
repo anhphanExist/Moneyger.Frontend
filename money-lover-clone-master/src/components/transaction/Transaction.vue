@@ -71,6 +71,9 @@ export default {
     transactionMonthGroup() {
       return this.$store.getters.transactionMonthGroup;
     }
+  },
+  mounted() {
+    this.$store.commit("setCurrentScreen", "transaction");
   }
 };
 </script>

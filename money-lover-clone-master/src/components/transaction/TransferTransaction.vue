@@ -3,7 +3,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$store.commit("setCurrentScreen", "transferTransaction");
+  }
+};
 </script>
 
 <style>
