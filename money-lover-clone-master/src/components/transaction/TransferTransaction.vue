@@ -39,7 +39,7 @@
                 id="grid-state"
                 v-model="destWalletName"
               >
-                <option v-for="wallet in walletList">{{ wallet.name }}</option>
+                <option v-for="wallet in walletList" v-bind:key="wallet.name">{{ wallet.name }}</option>
               </select>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -70,6 +70,7 @@
               id="grid-first-name"
               type="text"
               placeholder="500,000"
+              v-model="amount"
             />
           </div>
         </div>
@@ -86,23 +87,33 @@
               id="grid-password"
               rows="4"
               placeholder="Your note"
+              v-model="note"
             />
             <p class="text-gray-600 text-xs italic">
               Make it as long and as crazy as you'd like
+            </p>
+            <p class="text-red-500 text-xl italic" v-if="!$v.required">
+              All the fields must not be left empty
+            </p>
+            <p class="text-red-500 text-xl italic" v-else-if="!$v.amount.numeric">
+              Amount must be numeric types
             </p>
           </div>
         </div>
         <!-- Button -->
         <div class="flex flex-wrap -mx-3 mb-2">
           <div class="px-3 mb-6 md:mb-0">
-            <router-link
-              v-bind:to="'wallet'"
+            <button
               class="flex-none bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >Save</router-link
+              @click="onSave"
+              v-bind:disabled="$v.$invalid"
             >
+              Save
+            </button>
           </div>
           <div class="md:w-1/3 mb-6 md:mb-0">
             <router-link
+                    tag="button"
               v-bind:to="'wallet'"
               class="flex-none bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               >Cancel</router-link
@@ -116,10 +127,13 @@
 </template>
 
 <script>
+  import { required, numeric } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
-      destWalletName: ""
+      destWalletName: "",
+      amount: 0,
+      note: ""
     };
   },
   computed: {
@@ -137,6 +151,21 @@ export default {
       });
       return filteredWalletList;
     }
+  },
+  validations: {
+    destWalletName: {
+      required
+    },
+    amount: {
+      required,
+      numeric
+    },
+    note: {
+      required
+    }
+  },
+  methods: {
+    onSave() {}
   },
   mounted() {
     this.$store.commit("setCurrentScreen", "transferTransaction");
