@@ -62,7 +62,7 @@
             >Add Transaction</router-link
           >
 
-          <AccountDropDown />
+          <AccountDropDown class="ml-3"/>
         </div>
       </div>
     </div>
