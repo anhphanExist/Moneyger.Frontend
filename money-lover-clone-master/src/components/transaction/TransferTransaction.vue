@@ -39,7 +39,9 @@
                 id="grid-state"
                 v-model="destWalletName"
               >
-                <option v-for="wallet in walletList" v-bind:key="wallet.name">{{ wallet.name }}</option>
+                <option v-for="wallet in walletList" v-bind:key="wallet.name">{{
+                  wallet.name
+                }}</option>
               </select>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -95,7 +97,10 @@
             <p class="text-red-500 text-xl italic" v-if="!$v.required">
               All the fields must not be left empty
             </p>
-            <p class="text-red-500 text-xl italic" v-else-if="!$v.amount.numeric">
+            <p
+              class="text-red-500 text-xl italic"
+              v-if="!$v.amount.numeric"
+            >
               Amount must be numeric types
             </p>
           </div>
@@ -113,7 +118,7 @@
           </div>
           <div class="md:w-1/3 mb-6 md:mb-0">
             <router-link
-                    tag="button"
+              tag="button"
               v-bind:to="'wallet'"
               class="flex-none bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               >Cancel</router-link
@@ -127,7 +132,7 @@
 </template>
 
 <script>
-  import { required, numeric } from "vuelidate/lib/validators";
+import { required, numeric } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -165,7 +170,9 @@ export default {
     }
   },
   methods: {
-    onSave() {}
+    onSave() {
+      this.$router.push({ name: "transaction" });
+    }
   },
   mounted() {
     this.$store.commit("setCurrentScreen", "transferTransaction");

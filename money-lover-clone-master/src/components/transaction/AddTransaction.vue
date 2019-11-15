@@ -144,7 +144,7 @@
             <p class="text-red-500 text-xl italic" v-if="!$v.required">
               All the fields must not be left empty
             </p>
-            <p class="text-red-500 text-xl italic" v-else-if="!$v.amount.numeric">
+            <p class="text-red-500 text-xl italic" v-if="!$v.amount.numeric">
               Amount must be numeric types
             </p>
           </div>
@@ -237,7 +237,9 @@ export default {
     }
   },
   methods: {
-    onSave() {}
+    onSave() {
+      this.$router.push({name: "transaction"});
+    }
   },
   mounted() {
     this.$store.commit("setCurrentScreen", "addTransaction");
