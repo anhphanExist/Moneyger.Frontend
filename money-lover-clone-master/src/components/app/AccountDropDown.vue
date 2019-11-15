@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block px-4 relative">
+  <div class="inline-block relative">
     <button
       @click="isOpen = !isOpen"
       class="relative z-10 block h-10 w-10 rounded-full overflow-hidden border-2 border-blue-200 focus:outline-none focus:border-white"
@@ -14,8 +14,9 @@
       v-if="isOpen"
       @click="isOpen=false"
       class="fixed top-0 right-0 bottom-0 right-0 left-0 h-full w-full cursor-default"
-    ></button>
-    <div v-if="isOpen" class="bg-white rounded-lg py-2 absolute w-48 mt-2 shadow-xl">
+    >
+    </button>
+    <div v-if="isOpen" class="bg-white rounded-lg py-2 absolute right-0 w-48 mt-2 shadow-xl">
       <router-link
         href
         class="block px-4 py-2 text-gray-800 hover:bg-blue-400 hover:text-white"
