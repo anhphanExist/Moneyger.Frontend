@@ -9,10 +9,10 @@
         <div class="w-full flex justify-between py-5 px-6 mb-5 border-2">
           <div>{{ wallet.name }}</div>
           <div class="flex text-right">
-            <div class="mr-12">{{ wallet.balance }}</div>
-            <div class="mr-12 hover:text-blue-400 cursor-pointer">Transfer</div>
-            <div class="mr-12 hover:text-blue-400 cursor-pointer">Edit</div>
-            <div class="hover:text-blue-400 cursor-pointer">Delete</div>
+            <div class="mr-12 font-semibold text-xl">{{ wallet.balance }}</div>
+            <router-link v-bind:to="'transfer-transaction'" class="mr-12 font-semibold text-xl hover:text-blue-400 cursor-pointer">Transfer</router-link>
+            <router-link v-bind:to="'edit-wallet'" class="mr-12 font-semibold text-xl hover:text-blue-400 cursor-pointer">Edit</router-link>
+            <div class="font-semibold text-xl hover:text-red-500 cursor-pointer">Delete</div>
           </div>
         </div>
       </div>
