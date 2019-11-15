@@ -6,7 +6,8 @@
           tag="span"
           class="font-semibold text-2xl tracking-tight cursor-pointer"
           v-bind:to="'transaction'"
-        >Moneyger</router-link>
+          >Moneyger</router-link
+        >
       </div>
     </div>
     <div class="w-4/5">
@@ -41,7 +42,9 @@
               </el-select>
             </div>
 
-            <div class="inline-block ml-5 text-white font-bold">Total Wealth: ${{ totalWealth }}</div>
+            <div class="inline-block ml-5 text-white font-bold">
+              Total Wealth: ${{ totalWealth }}
+            </div>
           </div>
         </div>
         <div class="w-1/3 flex justify-end">
@@ -49,13 +52,15 @@
             v-bind:to="'add-wallet'"
             class="text-sm mr-3 px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
             v-if="currentScreen == 'wallet'"
-          >Add Wallet</router-link>
+            >Add Wallet</router-link
+          >
 
           <router-link
             v-bind:to="'add-transaction'"
             class="text-sm px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
             v-if="currentScreen == 'transaction'"
-          >Add Transaction</router-link>
+            >Add Transaction</router-link
+          >
 
           <AccountDropDown />
         </div>

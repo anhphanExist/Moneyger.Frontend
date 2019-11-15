@@ -32,7 +32,7 @@ const mutations = {
 };
 
 const actions = {
-  signup({ commit, dispatch }, authData) {
+  signup({ commit}, authData) {
     axios
       .post("/signup", {
         username: authData.username,
@@ -55,7 +55,7 @@ const actions = {
       });
   },
 
-  login({ commit, dispatch }, authData) {
+  login({ commit }, authData) {
     axios
       .post("/login", {
         username: authData.username,
@@ -78,11 +78,10 @@ const actions = {
       });
   },
 
-  logout({ commit }) {
+  logout() {
     localStorage.clear();
     router.push({ name: "login" });
-  },
-  fetchUser({ commit, state }) {}
+  }
 };
 
 export default {

@@ -6,14 +6,16 @@
         <label
           for
           class="block uppercase tracking-wide text-blue-700 text-xl font-bold m-auto"
-        >Add Transaction</label>
+          >Add Transaction</label
+        >
         <div class="flex flex-wrap mt-2 -mx-3 mb-6">
           <!-- Wallet select -->
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-state"
-            >Wallet</label>
+              >Wallet</label
+            >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -43,7 +45,8 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-state"
-            >Category</label>
+              >Category</label
+            >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -73,7 +76,8 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-state"
-            >Category Type</label>
+              >Category Type</label
+            >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -105,7 +109,8 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-first-name"
-            >Amount</label>
+              >Amount</label
+            >
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-first-name"
@@ -120,14 +125,17 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-password"
-            >Note</label>
+              >Note</label
+            >
             <textarea
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password"
               rows="4"
               placeholder="Your note"
             />
-            <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+            <p class="text-gray-600 text-xs italic">
+              Make it as long and as crazy as you'd like
+            </p>
           </div>
         </div>
         <!-- Button -->
@@ -135,12 +143,18 @@
           <div class="px-3 mb-6 md:mb-0">
             <button
               class="flex-none bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >Save</button>
+            >
+              Save
+            </button>
           </div>
           <div class="md:w-1/3 mb-6 md:mb-0">
-            <button
+            <router-link
+              tag="button"
+              v-bind:to="'transaction'"
               class="flex-none bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            >Cancel</button>
+            >
+              Cancel
+            </router-link>
           </div>
         </div>
       </form>
@@ -152,10 +166,9 @@
 <script>
 export default {
   mounted() {
-    this.$store.commit("setCurrentTransaction", "addTransaction");
+    this.$store.commit("setCurrentScreen", "addTransaction");
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>
