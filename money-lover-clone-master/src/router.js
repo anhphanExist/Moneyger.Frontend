@@ -12,6 +12,7 @@ import TransferTransaction from "./components/transaction/TransferTransaction.vu
 import EditProfile from "./components/user/EditProfile.vue";
 import AddWallet from "./components/wallet/AddWallet.vue";
 import EditWallet from "./components/wallet/AddWallet.vue";
+import Help from "./components/help/Help.vue";
 
 Vue.use(VueRouter);
 // Vue.use(NProgress);
@@ -67,6 +68,11 @@ const routes = [
         path: "wallet",
         name: "wallet",
         component: Wallet
+      },
+      {
+        path: "help",
+        name: "help",
+        component: Help
       },
       {
         path: "add-wallet",
