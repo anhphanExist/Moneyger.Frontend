@@ -6,7 +6,8 @@
         <label
           for
           class="block uppercase tracking-wide text-blue-700 text-xl font-bold m-auto"
-        >Transfer Transaction</label>
+          >Transfer Transaction</label
+        >
         <div class="flex flex-wrap mt-2 -mx-3 mb-6">
           <!-- Wallet select -->
           <!-- Category select -->
@@ -14,29 +15,15 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-state"
-            >From Wallet</label>
+              >From Wallet</label
+            >
             <div class="relative">
-              <select
+              <label
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
               >
-                <option>Wallet 0</option>
-                <option>Wallet 1</option>
-                <option>Wallet 2</option>
-              </select>
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-              >
-                <svg
-                  class="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                  />
-                </svg>
-              </div>
+                {{ selectedWallet }}
+              </label>
             </div>
           </div>
           <!-- Category Type Select -->
@@ -44,15 +31,15 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-state"
-            >To Wallet</label>
+              >To Wallet</label
+            >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
+                v-model="destWalletName"
               >
-                <option>Wallet 1</option>
-                <option>Wallet 2</option>
-                <option>Wallet 0</option>
+                <option v-for="wallet in walletList">{{ wallet.name }}</option>
               </select>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -76,7 +63,8 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-first-name"
-            >Amount</label>
+              >Amount</label
+            >
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-first-name"
@@ -91,14 +79,17 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-password"
-            >Note</label>
+              >Note</label
+            >
             <textarea
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-password"
               rows="4"
               placeholder="Your note"
             />
-            <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+            <p class="text-gray-600 text-xs italic">
+              Make it as long and as crazy as you'd like
+            </p>
           </div>
         </div>
         <!-- Button -->
@@ -107,13 +98,15 @@
             <router-link
               v-bind:to="'wallet'"
               class="flex-none bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >Save</router-link>
+              >Save</router-link
+            >
           </div>
           <div class="md:w-1/3 mb-6 md:mb-0">
             <router-link
               v-bind:to="'wallet'"
               class="flex-none bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            >Cancel</router-link>
+              >Cancel</router-link
+            >
           </div>
         </div>
       </form>
@@ -124,11 +117,31 @@
 
 <script>
 export default {
+  data() {
+    return {
+      destWalletName: ""
+    };
+  },
+  computed: {
+    selectedWallet() {
+      return this.$store.getters.getSelectedWallet;
+    },
+    walletList() {
+      let walletList = this.$store.getters.walletList;
+      let selectedWallet = this.$store.getters.getSelectedWallet;
+      let filteredWalletList = [];
+      walletList.forEach(element => {
+        if (element.name !== selectedWallet) {
+          filteredWalletList.push(element);
+        }
+      });
+      return filteredWalletList;
+    }
+  },
   mounted() {
     this.$store.commit("setCurrentScreen", "transferTransaction");
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>

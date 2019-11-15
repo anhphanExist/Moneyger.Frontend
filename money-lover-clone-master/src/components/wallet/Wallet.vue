@@ -10,19 +10,18 @@
           <div>{{ wallet.name }}</div>
           <div class="flex text-right">
             <div class="mr-12">{{ wallet.balance }}</div>
-            <router-link
-              :to="'transfer-transaction'"
-              tag="button"
+            <button
               class="mr-12 hover:text-blue-400 cursor-pointer"
-              >Transfer</router-link
+              @click="routeToTransferTransaction(wallet.name)"
             >
-            <router-link
-              :to="'edit-wallet'"
-              tag="button"
+              Transfer
+            </button>
+            <button
               class="mr-12 hover:text-blue-400 cursor-pointer"
+              @click="routeToEditWallet(wallet.name)"
             >
               Edit
-            </router-link>
+            </button>
             <button class="hover:text-blue-400 cursor-pointer">Delete</button>
           </div>
         </div>
@@ -36,6 +35,16 @@ export default {
   computed: {
     walletList() {
       return this.$store.getters.walletList;
+    }
+  },
+  methods: {
+    async routeToTransferTransaction(walletName) {
+      await this.$store.dispatch("selectWallet", walletName);
+      await this.$router.push({ name: "transferTransaction" });
+    },
+    async routeToEditWallet(walletName) {
+      await this.$store.dispatch("selectWallet", walletName);
+      await this.$router.push({ name: "editWallet" });
     }
   },
   mounted() {

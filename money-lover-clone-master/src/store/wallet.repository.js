@@ -5,7 +5,8 @@ const state = {
   createWalletErrors: [],
   updateWalletErrors: [],
   deleteWalletErrors: [],
-  transferWalletErrors: []
+  transferWalletErrors: [],
+  selectedWallet: null
 };
 
 const getters = {
@@ -23,6 +24,9 @@ const getters = {
   },
   transferWalletErrors(state) {
     return state.transferWalletErrors;
+  },
+  getSelectedWallet(state) {
+    return state.selectedWallet;
   }
 };
 
@@ -41,6 +45,9 @@ const mutations = {
   },
   transferWallet(state, transferWalletErrors) {
     state.transferWalletErrors = transferWalletErrors;
+  },
+  selectWallet(state, walletName) {
+    state.selectedWallet = walletName;
   }
 };
 
@@ -98,6 +105,12 @@ const actions = {
         commit("transferWallet", [...res.data.errors]);
       })
       .then(err => console.log(err));
+  },
+  selectWallet({commit}, walletName) {
+    return new Promise( resolve => {
+      const res = commit("selectWallet", walletName);
+      resolve(res);
+    });
   }
 };
 
