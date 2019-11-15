@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     let self = this;
-    this.$store.dispatch("listWallet").then(res => {
+    self.$store.dispatch("listWallet").then(res => {
       let currentDate = new Date();
       let currentMonth = currentDate.getMonth() + 1;
       let currentYear = currentDate.getFullYear();
@@ -82,6 +82,7 @@ export default {
         year: currentYear
       });
     });
+    self.$store.dispatch("listCategory");
   }
 };
 </script>

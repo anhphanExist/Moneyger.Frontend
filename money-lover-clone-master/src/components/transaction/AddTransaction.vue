@@ -20,41 +20,9 @@
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
+                v-model="selectedWallet"
               >
-                <option>Wallet 0</option>
-                <option>Wallet 1</option>
-                <option>Wallet 2</option>
-              </select>
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-              >
-                <svg
-                  class="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <!-- Category select -->
-          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
-              >Category</label
-            >
-            <div class="relative">
-              <select
-                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
-              >
-                <option>Books</option>
-                <option>Movies</option>
-                <option>Healthcare</option>
+                <option v-for="option in walletNameList" :value="option">{{ option }}</option>
               </select>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -74,18 +42,47 @@
           <!-- Category Type Select -->
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
+                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    for="grid-state"
+            >Category Type</label
+            >
+            <div class="relative">
+              <select
+                      class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-state"
+                      v-model="selectedCategoryType"
+              >
+                <option v-for="categoryType in categoryTypeList">{{ categoryType }}</option>
+              </select>
+              <div
+                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+              >
+                <svg
+                        class="fill-current h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                >
+                  <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <!-- Category select -->
+          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+            <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-state"
-              >Category Type</label
+              >Category</label
             >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
+                v-model="selectedCategory"
               >
-                <option>Income</option>
-                <option>Expense</option>
-                <option>Dept/Loan</option>
+                <option v-for="category in categoryNameList">{{ category }}</option>
               </select>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -102,6 +99,7 @@
               </div>
             </div>
           </div>
+
         </div>
         <!-- Amount -->
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -143,6 +141,7 @@
           <div class="px-3 mb-6 md:mb-0">
             <button
               class="flex-none bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              @click="onSave"
             >
               Save
             </button>
@@ -165,8 +164,54 @@
 
 <script>
 export default {
+  data() {
+    return {
+      selectedWallet: "",
+      selectedCategory: "",
+      amount: 0,
+      note: ""
+    };
+  },
+  computed: {
+    selectedCategoryType: {
+      get() {
+        return this.$store.getters.selectedCategoryType;
+      },
+      set(value) {
+        this.$store.commit("setSelectedCategoryType", value);
+      }
+    },
+    categoryTypeList() {
+      return ["Inflow", "Outflow"];
+    },
+    walletNameList() {
+      let walletList = [...this.$store.getters.walletList];
+      let walletListName = [];
+
+      walletList.forEach(element => {
+        walletListName.push(element.name);
+      });
+
+      return walletListName;
+    },
+    categoryNameList() {
+      let categoryList = [...this.$store.getters.categoryList];
+      let categoryListName = [];
+      let selectedCategoryType = this.$store.getters.selectedCategoryType;
+      categoryList.forEach(element => {
+        if (element.type === selectedCategoryType) {
+          categoryListName.push(element.name);
+        }
+      });
+      return categoryListName;
+    }
+  },
+  methods: {
+    onSave() {}
+  },
   mounted() {
     this.$store.commit("setCurrentScreen", "addTransaction");
+    this.selectedWallet = this.$store.getters.getActiveWalletInNavBar;
   }
 };
 </script>

@@ -10,9 +10,20 @@
           <div>{{ wallet.name }}</div>
           <div class="flex text-right">
             <div class="mr-12">{{ wallet.balance }}</div>
-            <div class="mr-12 hover:text-blue-400 cursor-pointer">Transfer</div>
-            <div class="mr-12 hover:text-blue-400 cursor-pointer">Edit</div>
-            <div class="hover:text-blue-400 cursor-pointer">Delete</div>
+            <router-link
+              :to="'transfer-transaction'"
+              tag="button"
+              class="mr-12 hover:text-blue-400 cursor-pointer"
+              >Transfer</router-link
+            >
+            <router-link
+              :to="'edit-wallet'"
+              tag="button"
+              class="mr-12 hover:text-blue-400 cursor-pointer"
+            >
+              Edit
+            </router-link>
+            <button class="hover:text-blue-400 cursor-pointer">Delete</button>
           </div>
         </div>
       </div>

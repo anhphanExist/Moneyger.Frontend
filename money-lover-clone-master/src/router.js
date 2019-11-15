@@ -11,7 +11,7 @@ import AddTransaction from "./components/transaction/AddTransaction.vue";
 import TransferTransaction from "./components/transaction/TransferTransaction.vue";
 import EditProfile from "./components/user/EditProfile.vue";
 import AddWallet from "./components/wallet/AddWallet.vue";
-import EditWallet from "./components/wallet/AddWallet.vue";
+import EditWallet from "./components/wallet/EditWallet.vue";
 import Help from "./components/help/Help.vue";
 
 Vue.use(VueRouter);

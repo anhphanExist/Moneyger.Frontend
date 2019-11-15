@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import userRepository from "./user.repository";
 import transactionRepository from "./transaction.repository";
 import walletRepository from "./wallet.repository";
+import categoryRepository from "./category.repository";
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
   modules: {
     userRepository,
     transactionRepository,
-    walletRepository
+    walletRepository,
+    categoryRepository
   }
 });
