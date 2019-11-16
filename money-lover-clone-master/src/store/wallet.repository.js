@@ -60,18 +60,18 @@ const actions = {
       })
       .then(err => console.log(err));
   },
-  create({ commit }, newWallet) {
-    axios
-      .post("/wallet/create", {
-        name: newWallet.name,
-        balance: newWallet.balance
-      })
-      .then(res => {
-        commit("createWallet", [...res.data.errors]);
-      })
-      .then(err => console.log(err));
+  async createWallet({ commit }, newWallet) {
+    let response = await axios.post("/wallet/create", {
+      name: newWallet.name,
+      balance: newWallet.balance
+    });
+    if (response.data.errors != null) {
+      await commit("createWallet", [...response.data.errors]);
+    } else {
+      await commit("createWallet", []);
+    }
   },
-  update({ commit }, walletUpdateRequestDTO) {
+  updateWallet({ commit }, walletUpdateRequestDTO) {
     axios
       .post("wallet/update", {
         name: walletUpdateRequestDTO.name,
@@ -83,7 +83,7 @@ const actions = {
       })
       .then(err => console.log(err));
   },
-  delete({ commit }, walletDeleteRequestDTO) {
+  deleteWallet({ commit }, walletDeleteRequestDTO) {
     axios
       .post("wallet/delete", {
         name: walletDeleteRequestDTO.name
@@ -93,7 +93,7 @@ const actions = {
       })
       .then(err => console.log(err));
   },
-  transfer({ commit }, walletTransferRequestDTO) {
+  transferWallet({ commit }, walletTransferRequestDTO) {
     axios
       .post("wallet/transfer", {
         sourceWalletName: walletTransferRequestDTO.sourceWalletName,
@@ -106,8 +106,8 @@ const actions = {
       })
       .then(err => console.log(err));
   },
-  selectWallet({commit}, walletName) {
-    return new Promise( resolve => {
+  selectWallet({ commit }, walletName) {
+    return new Promise(resolve => {
       const res = commit("selectWallet", walletName);
       resolve(res);
     });

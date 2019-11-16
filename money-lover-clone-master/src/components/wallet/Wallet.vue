@@ -12,13 +12,13 @@
             <div class="mr-12">{{ wallet.balance }}</div>
             <button
               class="mr-12 hover:text-blue-400 cursor-pointer"
-              @click="routeToTransferTransaction(wallet.name)"
+              @click.prevent="routeToTransferTransaction(wallet.name)"
             >
               Transfer
             </button>
             <button
               class="mr-12 hover:text-blue-400 cursor-pointer"
-              @click="routeToEditWallet(wallet.name)"
+              @click.prevent="routeToEditWallet(wallet.name)"
             >
               Edit
             </button>
@@ -47,7 +47,8 @@ export default {
       await this.$router.push({ name: "editWallet" });
     }
   },
-  mounted() {
+  async mounted() {
+    await this.$store.dispatch("listWallet");
     this.$store.commit("setCurrentScreen", "wallet");
   }
 };

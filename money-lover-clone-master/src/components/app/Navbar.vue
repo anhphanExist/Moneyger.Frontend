@@ -49,20 +49,20 @@
         </div>
         <div class="w-1/3 flex justify-end">
           <router-link
-            v-bind:to="'add-wallet'"
+            v-bind:to="{ name: 'addWallet' }"
             class="text-sm mr-3 px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
             v-if="currentScreen == 'wallet'"
             >Add Wallet</router-link
           >
 
           <router-link
-            v-bind:to="'add-transaction'"
+            v-bind:to="{ name: 'addTransaction' }"
             class="text-sm px-3 py-3 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
             v-if="currentScreen == 'transaction'"
             >Add Transaction</router-link
           >
 
-          <AccountDropDown class="ml-3"/>
+          <AccountDropDown class="ml-3" />
         </div>
       </div>
     </div>

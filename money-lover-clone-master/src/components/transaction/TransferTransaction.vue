@@ -2,7 +2,7 @@
   <div class="flex">
     <div class="w-1/4 bg-gray-500 h-full"></div>
     <div class="w-1/2 bg-gray-400 h-full p-3 mt-12">
-      <form class="w-full max-w-lg m-auto">
+      <form class="w-full max-w-lg m-auto" @submit.prevent="onSave">
         <label
           for
           class="block uppercase tracking-wide text-blue-700 text-xl font-bold m-auto"
@@ -97,10 +97,7 @@
             <p class="text-red-500 text-xl italic" v-if="!$v.required">
               All the fields must not be left empty
             </p>
-            <p
-              class="text-red-500 text-xl italic"
-              v-if="!$v.amount.numeric"
-            >
+            <p class="text-red-500 text-xl italic" v-if="!$v.amount.numeric">
               Amount must be numeric types
             </p>
           </div>
@@ -110,7 +107,7 @@
           <div class="px-3 mb-6 md:mb-0">
             <button
               class="flex-none bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              @click="onSave"
+              type="submit"
               v-bind:disabled="$v.$invalid"
             >
               Save
