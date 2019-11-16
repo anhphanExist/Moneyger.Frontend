@@ -13,20 +13,20 @@
         <div class="w-full flex justify-between text-2xl font-semibold p-5">
           <span class="w-2/3 text-gray-800">Inflow</span>
           <span class="w-1/3 flex">
-            <span class="w-2/3 text-gray-800">
+            <span class="w-1/3 text-gray-800">
               <p>+</p>
             </span>
-            <span class="w-1/3 text-right text-gray-600">${{ transactionMonthGroup.inflow }}</span>
+            <span class="w-2/3 text-right text-gray-600">{{ transactionMonthGroup.inflow }} VND </span>
           </span>
         </div>
 
         <div class="w-full flex justify-between text-2xl font-semibold p-5">
           <span class="w-2/3 text-gray-800">Outflow</span>
           <span class="w-1/3 flex">
-            <span class="w-2/3 text-gray-800">
+            <span class="w-1/3 text-gray-800">
               <p>-</p>
             </span>
-            <span class="w-1/3 text-right text-gray-600">${{ transactionMonthGroup.outflow }}</span>
+            <span class="w-2/3 text-right text-gray-600">{{ transactionMonthGroup.outflow }} VND </span>
           </span>
         </div>
 
@@ -38,9 +38,9 @@
         <div class="w-full flex justify-between text-2xl font-semibold p-5">
           <span class="w-2/3 text-gray-800">Total</span>
           <span class="w-1/3 flex">
-            <span class="w-2/3 text-gray-800"></span>
+            <span class="w-1/3 text-gray-800"></span>
           </span>
-          <span class="w-1/3 text-right text-gray-600">${{ transactionMonthGroup.inOutRate }}</span>
+          <span class="w-2/3 text-right text-gray-600">{{ transactionMonthGroup.inOutRate }} VND </span>
         </div>
       </div>
     </div>

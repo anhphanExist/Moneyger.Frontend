@@ -43,7 +43,7 @@
             </div>
 
             <div class="inline-block ml-5 text-white font-bold">
-              Total Wealth: ${{ totalWealth }}
+              Total Wealth: {{ totalWealth }} VND
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     totalWealth() {
-      return 20000000;
+      return this.$store.getters.capital;
     },
     walletList() {
       return this.$store.getters.walletList;

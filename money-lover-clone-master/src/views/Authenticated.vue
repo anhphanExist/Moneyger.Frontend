@@ -68,8 +68,9 @@ export default {
       ]
     };
   },
-  mounted() {
-    this.$store.dispatch("listCategory");
+  async mounted() {
+    await this.$store.dispatch("listCategory");
+    await this.$store.dispatch("listWallet");
   }
 };
 </script>

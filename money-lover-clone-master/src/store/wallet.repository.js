@@ -2,6 +2,7 @@ import axios from "axios";
 
 const state = {
   walletList: [],
+  capital: 0,
   createWalletErrors: [],
   updateWalletErrors: [],
   deleteWalletErrors: [],
@@ -12,6 +13,9 @@ const state = {
 const getters = {
   walletList(state) {
     return state.walletList;
+  },
+  capital(state) {
+    return state.capital;
   },
   createWalletErrors(state) {
     return state.createWalletErrors;
@@ -33,6 +37,9 @@ const getters = {
 const mutations = {
   listWallet(state, walletList) {
     state.walletList = walletList;
+  },
+  setCapital(state, capital) {
+    state.capital =  capital;
   },
   createWallet(state, createWalletErrors) {
     state.createWalletErrors = createWalletErrors;
@@ -63,6 +70,13 @@ const actions = {
       .post("/wallet/list", {})
       .then(res => {
         commit("listWallet", [...res.data]);
+        let capital = 0;
+        if (res.data.length > 0) {
+          res.data.forEach(element => {
+            capital += element.balance;
+          });
+        }
+        commit("setCapital", capital);
       })
       .then(err => console.log(err));
   },
