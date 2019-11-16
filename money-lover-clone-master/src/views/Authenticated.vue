@@ -69,20 +69,7 @@ export default {
     };
   },
   mounted() {
-    let self = this;
-    self.$store.dispatch("listWallet").then(res => {
-      let currentDate = new Date();
-      let currentMonth = currentDate.getMonth() + 1;
-      let currentYear = currentDate.getFullYear();
-      let walletList = [...self.$store.getters.walletList];
-      let firstWalletName = walletList.length > 0 ? walletList[0].name : null;
-      self.$store.dispatch("getTransactionMonthGroup", {
-        walletName: firstWalletName,
-        month: currentMonth,
-        year: currentYear
-      });
-    });
-    self.$store.dispatch("listCategory");
+    this.$store.dispatch("listCategory");
   }
 };
 </script>

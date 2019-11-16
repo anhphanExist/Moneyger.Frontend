@@ -27,12 +27,15 @@ const mutations = {
   },
   setActiveWalletInNavBar(state, walletName) {
     state.activeWalletInNavBar = walletName;
+  },
+  clearTransactionErrors(state) {
+    state.createTransactionErrors = [];
   }
 };
 
 const actions = {
   getTransactionMonthGroup({ commit }, transactionMonthGroupRequestDTO) {
-    axios
+    return axios
       .post("/transaction/get-transaction-month-group", {
         month: transactionMonthGroupRequestDTO.month,
         year: transactionMonthGroupRequestDTO.year,
@@ -47,19 +50,20 @@ const actions = {
       })
       .catch(error => console.log(error));
   },
-  createTransaction({ commit }, transactionRequestDTO) {
-    axios
-      .post("/transaction/create", {
-        walletName: transactionRequestDTO.walletName,
-        categoryName: transactionRequestDTO.categoryName,
-        amount: transactionRequestDTO.amount,
-        note: transactionRequestDTO.note,
-        date: transactionRequestDTO.date
-      })
-      .then(res => {
-        commit("createTransaction", [...res.date.errors]);
-      })
-      .then(err => console.log(err));
+  async createTransaction({ commit }, transactionRequestDTO) {
+    let response = await axios.post("/transaction/create", {
+      walletName: transactionRequestDTO.walletName,
+      categoryName: transactionRequestDTO.categoryName,
+      amount: transactionRequestDTO.amount,
+      note: transactionRequestDTO.note,
+      date: transactionRequestDTO.date
+    });
+
+    if (response.data.errors != null) {
+      await commit("createTransaction", [...response.data.errors]);
+    } else {
+      await commit("createTransaction", []);
+    }
   }
 };
 

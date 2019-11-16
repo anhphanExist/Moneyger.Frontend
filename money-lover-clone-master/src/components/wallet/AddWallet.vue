@@ -118,6 +118,9 @@ export default {
   },
   mounted() {
     this.$store.commit("setCurrentScreen", "addWallet");
+  },
+  beforeDestroy() {
+    this.$store.commit("clearWalletErrors");
   }
 };
 </script>

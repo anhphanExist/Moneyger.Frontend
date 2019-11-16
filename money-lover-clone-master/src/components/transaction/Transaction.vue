@@ -72,7 +72,20 @@ export default {
       return this.$store.getters.transactionMonthGroup;
     }
   },
-  mounted() {
+  async mounted() {
+    let self = this;
+    self.$store.dispatch("listWallet").then(res => {
+      let currentDate = new Date();
+      let currentMonth = currentDate.getMonth() + 1;
+      let currentYear = currentDate.getFullYear();
+      let walletList = [...self.$store.getters.walletList];
+      let firstWalletName = walletList.length > 0 ? walletList[0].name : null;
+      self.$store.dispatch("getTransactionMonthGroup", {
+        walletName: firstWalletName,
+        month: currentMonth,
+        year: currentYear
+      });
+    });
     this.$store.commit("setCurrentScreen", "transaction");
   }
 };

@@ -141,11 +141,25 @@
             <p class="text-gray-600 text-xs italic">
               Make it as long and as crazy as you'd like
             </p>
-            <p class="text-red-500 text-xl italic" v-if="!$v.required">
+            <p
+              class="text-red-500 text-xl italic"
+              v-if="
+                !$v.selectedWallet.required ||
+                  !$v.selectedCategory.required ||
+                  !$v.amount.required ||
+                  !$v.note.required
+              "
+            >
               All the fields must not be left empty
             </p>
-            <p class="text-red-500 text-xl italic" v-if="!$v.amount.numeric">
-              Amount must be numeric types
+            <p class="text-red-500 text-xl italic" v-if="!$v.amount.decimal">
+              Amount must be decimal type
+            </p>
+            <p class="text-red-500 text-xl italic" v-if="!$v.amount.maxValue">
+              Mày làm đéo gì có nhiều tiền thế thằng xạo lồn
+            </p>
+            <p class="text-red-500 text-xl italic" v-if="errors.length > 0">
+              {{ errors }}
             </p>
           </div>
         </div>
@@ -163,7 +177,7 @@
           <div class="md:w-1/3 mb-6 md:mb-0">
             <router-link
               tag="button"
-              v-bind:to="'transaction'"
+              v-bind:to="{ name: 'transaction' }"
               class="flex-none bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             >
               Cancel
@@ -177,7 +191,7 @@
 </template>
 
 <script>
-import { required, numeric } from "vuelidate/lib/validators";
+import { required, decimal, maxValue } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -196,13 +210,17 @@ export default {
     },
     amount: {
       required,
-      numeric
+      decimal,
+      maxValue: maxValue(79228162514264337593543950335)
     },
     note: {
       required
     }
   },
   computed: {
+    errors() {
+      return this.$store.getters.createTransactionErrors;
+    },
     selectedCategoryType: {
       get() {
         return this.$store.getters.selectedCategoryType;
@@ -237,13 +255,32 @@ export default {
     }
   },
   methods: {
-    onSave() {
-      this.$router.push({ name: "transaction" });
+    async onSave() {
+      const formData = {
+        walletName: this.selectedWallet,
+        categoryName: this.selectedCategory,
+        amount: this.amount,
+        note: this.note,
+        date: new Date()
+      };
+      await this.$store.dispatch("createTransaction", {
+        walletName: formData.walletName,
+        categoryName: formData.categoryName,
+        amount: formData.amount,
+        note: formData.note,
+        date: formData.date
+      });
+      if (!this.errors.length > 0) {
+        await this.$router.push({ name: "transaction" });
+      }
     }
   },
   mounted() {
     this.$store.commit("setCurrentScreen", "addTransaction");
     this.selectedWallet = this.$store.getters.getActiveWalletInNavBar;
+  },
+  beforeDestroy() {
+    this.$store.commit("clearTransactionErrors");
   }
 };
 </script>

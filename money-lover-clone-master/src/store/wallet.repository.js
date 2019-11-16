@@ -48,7 +48,13 @@ const mutations = {
   },
   selectWallet(state, walletName) {
     state.selectedWallet = walletName;
-  }
+  },
+  clearWalletErrors(state) {
+    state.createWalletErrors = [];
+    state.updateWalletErrors = [];
+    state.deleteWalletErrors = [];
+    state.transferWalletErrors = [];
+  },
 };
 
 const actions = {
