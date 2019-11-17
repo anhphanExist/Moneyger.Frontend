@@ -10,7 +10,9 @@ const state = {
     transactionDayGroups: []
   },
   createTransactionErrors: [],
-  activeWalletInNavBar: ""
+  activeWalletInNavBar: "",
+  month: new Date().getMonth(),
+  year: new Date().getFullYear()
 };
 
 const getters = {
@@ -23,6 +25,12 @@ const getters = {
   getActiveWalletInNavBar(state) {
     state.activeWalletInNavBar = localStorage.getItem("activeWalletInNavBar");
     return state.activeWalletInNavBar;
+  },
+  getSelectedMonth(state) {
+    return state.month + 1;
+  },
+  getSelectedYear(state) {
+    return state.year;
   }
 };
 
@@ -39,6 +47,12 @@ const mutations = {
   },
   clearTransactionErrors(state) {
     state.createTransactionErrors = [];
+  },
+  setSelectedMonth(state, month) {
+    state.month = month - 1;
+  },
+  setSelectedYear(state, year) {
+    state.year = year;
   }
 };
 
@@ -56,6 +70,8 @@ const actions = {
           "setActiveWalletInNavBar",
           transactionMonthGroupRequestDTO.walletName
         );
+        commit("setSelectedMonth", transactionMonthGroupRequestDTO.month);
+        commit("setSelectedYear", transactionMonthGroupRequestDTO.year);
       })
       .catch(error => console.log(error));
   },

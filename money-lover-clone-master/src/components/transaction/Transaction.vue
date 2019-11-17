@@ -2,58 +2,79 @@
   <div>
     <div
       class="w-100 h-24 bg-white hover:bg-gray-100 py-5 px-12 text-2xl text-gray-500 font-medium flex justify-start items-center cursor-pointer"
-    >Select Month and Year here</div>
+    >
+      Select Month and Year here
+    </div>
     <divider />
-    <div class="w-100 h-24 bg-gray-400 shadow-inner"></div>
+    <form
+      class="w-100 h-24 bg-gray-400 shadow-inner"
+    >
+      <select name="month" v-model="monthSelect">
+        <option v-for="month in 12" :value="month">{{ month }}</option>
+      </select>
+      <select name="year" v-model="yearSelect">
+        <option v-for="year in 50" :value="year + 1969">{{
+          year + 1969
+        }}</option>
+      </select>
+    </form>
     <divider />
 
     <!-- Cash Flow -->
     <div class="flex">
       <div class="w-full bg-white flex flex-col p-12">
         <div class="w-full flex justify-between text-2xl font-semibold p-5">
-          <span class="w-2/3 text-gray-800">Inflow</span>
-          <span class="w-1/3 flex">
-            <span class="w-1/3 text-gray-800">
+          <span class="w-1/2 text-gray-800">Inflow</span>
+          <span class="w-1/2 flex">
+            <span class="w-1/6 text-gray-800">
               <p>+</p>
             </span>
-            <span class="w-2/3 text-right text-gray-600">{{ formatMoney(transactionMonthGroup.inflow) }} VND </span>
+            <span class="w-5/6 text-right text-gray-600"
+              >{{ formatMoney(transactionMonthGroup.inflow) }} VND
+            </span>
           </span>
         </div>
 
         <div class="w-full flex justify-between text-2xl font-semibold p-5">
-          <span class="w-2/3 text-gray-800">Outflow</span>
-          <span class="w-1/3 flex">
-            <span class="w-1/3 text-gray-800">
+          <span class="w-1/2 text-gray-800">Outflow</span>
+          <span class="w-1/2 flex">
+            <span class="w-1/6 text-gray-800">
               <p>-</p>
             </span>
-            <span class="w-2/3 text-right text-gray-600">{{ formatMoney(transactionMonthGroup.outflow) }} VND </span>
+            <span class="w-5/6 text-right text-gray-600"
+              >{{ formatMoney(transactionMonthGroup.outflow) }} VND
+            </span>
           </span>
         </div>
 
         <div class="w-full flex">
-          <span class="w-2/3"></span>
-          <span class="w-1/3 border-t-2"></span>
+          <span class="w-1/2"></span>
+          <span class="w-1/2 border-t-2"></span>
         </div>
 
         <div class="w-full flex justify-between text-2xl font-semibold p-5">
-          <span class="w-2/3 text-gray-800">Total</span>
-          <span class="w-1/3 flex">
-            <span class="w-1/3 text-gray-800"></span>
+          <span class="w-1/2 text-gray-800">Total</span>
+          <span class="w-1/2 flex">
+            <span class="w-1/6 text-gray-800"></span>
           </span>
-          <span class="w-2/3 text-right text-gray-600">{{ formatMoney(transactionMonthGroup.inOutRate) }} VND </span>
+          <span class="w-5/6 text-right text-gray-600"
+            >{{ formatMoney(transactionMonthGroup.inOutRate) }} VND
+          </span>
         </div>
       </div>
     </div>
 
     <div class="w-100 flex">
       <div
-        class="w-full bg-gray-400 hover:bg-gray-600 h-10 text-gray-700 hover:text-gray-200 cursor-pointer font-semibold flex justify-center items-center"
-      >View report for this month</div>
+        class="w-full bg-gray-400 h-10 text-gray-700 font-semibold flex justify-center items-center"
+      ></div>
     </div>
 
     <divider />
 
-    <transaction-day-groups v-if="transactionMonthGroup.transactionDayGroups.length > 0"></transaction-day-groups>
+    <transaction-day-groups
+      v-if="transactionMonthGroup.transactionDayGroups.length > 0"
+    ></transaction-day-groups>
   </div>
 </template>
 
@@ -70,6 +91,40 @@ export default {
   computed: {
     transactionMonthGroup() {
       return this.$store.getters.transactionMonthGroup;
+    },
+    monthSelect: {
+      get() {
+        return this.$store.getters.getSelectedMonth;
+      },
+      set(value) {
+        const formData = {
+          month: value,
+          year: this.yearSelect,
+          walletName: this.$store.getters.getActiveWalletInNavBar
+        };
+        this.$store.dispatch("getTransactionMonthGroup", {
+          month: formData.month,
+          year: formData.year,
+          walletName: formData.walletName
+        });
+      }
+    },
+    yearSelect: {
+      get() {
+        return this.$store.getters.getSelectedYear;
+      },
+      set(value) {
+        const formData = {
+          month: this.monthSelect,
+          year: value,
+          walletName: this.$store.getters.getActiveWalletInNavBar
+        };
+        this.$store.dispatch("getTransactionMonthGroup", {
+          month: formData.month,
+          year: formData.year,
+          walletName: formData.walletName
+        });
+      }
     }
   },
   methods: {
@@ -80,9 +135,8 @@ export default {
   async mounted() {
     let self = this;
     self.$store.dispatch("listWallet").then(res => {
-      let currentDate = new Date();
-      let currentMonth = currentDate.getMonth() + 1;
-      let currentYear = currentDate.getFullYear();
+      let currentMonth = self.$store.getters.getSelectedMonth;
+      let currentYear = self.$store.getters.getSelectedYear;
       let walletList = [...self.$store.getters.walletList];
       let firstWalletName = walletList.length > 0 ? walletList[0].name : null;
       self.$store.dispatch("getTransactionMonthGroup", {
@@ -96,5 +150,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
