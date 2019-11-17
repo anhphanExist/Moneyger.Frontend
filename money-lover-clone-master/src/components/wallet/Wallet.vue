@@ -1,6 +1,9 @@
 <template>
   <div>
     <div class="w-100 h-24">
+      <p class="text-red-500 text-xl italic" v-if="deleteErrors.length > 0">
+        Failed to delete wallet. Errors: {{ deleteErrors }}
+      </p>
       <div
         class="w-100 flex flex-col bg-white p-5"
         v-for="(wallet, index) in walletList"
