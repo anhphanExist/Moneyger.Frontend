@@ -12,7 +12,7 @@
           <div class="cash">
             {{
               formatMoney(
-                transactionDayGroup.inflow - transactionDayGroup.outflow
+                transactionDayGroup.inflow + transactionDayGroup.outflow
               )
             }}
           </div>
