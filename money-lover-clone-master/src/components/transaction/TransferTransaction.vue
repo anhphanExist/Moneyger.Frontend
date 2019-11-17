@@ -97,8 +97,14 @@
             <p class="text-red-500 text-xl italic" v-if="!$v.required">
               All the fields must not be left empty
             </p>
-            <p class="text-red-500 text-xl italic" v-if="!$v.amount.numeric">
+            <p class="text-red-500 text-xl italic" v-if="!$v.amount.decimal">
               Amount must be numeric types
+            </p>
+            <p class="text-red-500 text-xl italic" v-if="!$v.amount.maxValue">
+              You don't have that much money, cheater !!
+            </p>
+            <p class="text-red-500 text-xl italic" v-if="errors.length > 0">
+              {{ errors }}
             </p>
           </div>
         </div>
@@ -129,7 +135,7 @@
 </template>
 
 <script>
-import { required, numeric } from "vuelidate/lib/validators";
+import { required, decimal, maxValue } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -144,7 +150,7 @@ export default {
     },
     walletList() {
       let walletList = this.$store.getters.walletList;
-      let selectedWallet = this.$store.getters.getSelectedWallet;
+      let selectedWallet = this.$store.getters.getSelectedWalletName;
       let filteredWalletList = [];
       walletList.forEach(element => {
         if (element.name !== selectedWallet) {
@@ -152,6 +158,9 @@ export default {
         }
       });
       return filteredWalletList;
+    },
+    errors() {
+      return this.$store.getters.transferWalletErrors;
     }
   },
   validations: {
@@ -160,19 +169,37 @@ export default {
     },
     amount: {
       required,
-      numeric
+      decimal,
+      maxValue: maxValue(79228162514264337593543950335)
     },
     note: {
       required
     }
   },
   methods: {
-    onSave() {
-      this.$router.push({ name: "transaction" });
+    onSave: async function() {
+      const formData = {
+        sourceWalletName: this.selectedWallet,
+        destWalletName: this.destWalletName,
+        amount: this.amount,
+        note: this.note
+      };
+      await this.$store.dispatch("transferWallet", {
+        sourceWalletName: formData.sourceWalletName,
+        destWalletName: formData.destWalletName,
+        amount: formData.amount,
+        note: formData.note
+      });
+      if (!this.errors.length > 0) {
+        await this.$router.push({ name: "transaction" });
+      }
     }
   },
   mounted() {
     this.$store.commit("setCurrentScreen", "transferTransaction");
+  },
+  beforeDestroy() {
+    this.$store.commit("clearWalletErrors");
   }
 };
 </script>

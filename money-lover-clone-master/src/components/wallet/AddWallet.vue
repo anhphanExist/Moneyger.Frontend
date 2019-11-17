@@ -48,9 +48,15 @@
           </p>
           <p
             class="text-red-500 text-xl italic"
-            v-if="!$v.initialBalance.numeric"
+            v-if="!$v.initialBalance.decimal"
           >
-            Balance must be numeric types
+            Balance must be decimal types
+          </p>
+          <p
+            class="text-red-500 text-xl italic"
+            v-if="!$v.initialBalance.maxValue"
+          >
+            You don't have that much money, cheater !!
           </p>
           <p class="text-red-500 text-xl italic" v-if="errors.length > 0">
             {{ errors }}
@@ -78,7 +84,7 @@
 </template>
 
 <script>
-import { required, numeric } from "vuelidate/lib/validators";
+import { required, decimal, maxValue } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -97,7 +103,8 @@ export default {
     },
     initialBalance: {
       required,
-      numeric
+      decimal,
+      maxValue: maxValue(79228162514264337593543950335)
     }
   },
   methods: {

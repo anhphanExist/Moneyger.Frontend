@@ -124,18 +124,18 @@ const actions = {
       })
       .then(err => console.log(err));
   },
-  transferWallet({ commit }, walletTransferRequestDTO) {
-    axios
-      .post("wallet/transfer", {
-        sourceWalletName: walletTransferRequestDTO.sourceWalletName,
-        destWalletName: walletTransferRequestDTO.destWalletName,
-        amount: walletTransferRequestDTO.amount,
-        note: walletTransferRequestDTO.note
-      })
-      .then(res => {
-        commit("transferWallet", [...res.data.errors]);
-      })
-      .then(err => console.log(err));
+  async transferWallet({ commit }, walletTransferRequestDTO) {
+    let response = await axios.post("wallet/transfer", {
+      sourceWalletName: walletTransferRequestDTO.sourceWalletName,
+      destWalletName: walletTransferRequestDTO.destWalletName,
+      amount: walletTransferRequestDTO.amount,
+      note: walletTransferRequestDTO.note
+    });
+    if (response.data.errors != null) {
+      await commit("transferWallet", [...response.data.errors]);
+    } else {
+      await commit("transferWallet", []);
+    }
   },
   selectWallet({ commit }, wallet) {
     return new Promise(resolve => {
