@@ -1,10 +1,10 @@
 <template>
   <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
     <div class="w-1/5">
-      <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <div class="flex items-center flex-shrink-0 text-yellow-400 mr-6">
         <router-link
           tag="span"
-          class="font-semibold text-2xl tracking-tight cursor-pointer"
+          class="font-bold text-3xl tracking-tight cursor-pointer"
           v-bind:to="'transaction'"
           >Moneyger</router-link
         >
@@ -29,7 +29,7 @@
           </div>
           <div class="text-sm lg:flex-grow">
             <!-- Wallet region -->
-            <div class="inline-block mr-4 text-white font-bold">Wallet</div>
+            <div class="inline-block mr-4 text-white text-lg">Wallet</div>
 
             <div class="inline-block relative w-64">
               <el-select v-model="activeWallet">
@@ -42,8 +42,10 @@
               </el-select>
             </div>
 
-            <div class="inline-block ml-5 text-white font-bold">
-              Total Wealth: {{ totalWealth }} VND
+            <div class="inline-block ml-5 text-white">
+              <p class="inline-block text-lg">Total Wealth: </p>
+              <p class="inline-block text-2xl text-yellow-400 pl-10 font-bold">{{ totalWealth }}</p>
+              <p class="inline-block text-lg pl-4">VND</p>
             </div>
           </div>
         </div>
@@ -77,7 +79,8 @@ export default {
   },
   computed: {
     totalWealth() {
-      return this.$store.getters.capital;
+      let capital = this.$store.getters.capital;
+      return new Intl.NumberFormat("en-US").format(capital);
     },
     walletList() {
       return this.$store.getters.walletList;

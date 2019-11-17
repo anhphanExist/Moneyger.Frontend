@@ -9,13 +9,19 @@
           <div class="time">
             <span>{{ transformDate(transactionDayGroup.date) }}</span>
           </div>
-          <div class="cash">{{ transactionDayGroup.inflow - transactionDayGroup.outflow }}</div>
+          <div class="cash">
+            {{
+              formatMoney(
+                transactionDayGroup.inflow - transactionDayGroup.outflow
+              )
+            }}
+          </div>
         </div>
         <div class="w-full border-t-2 my-10"></div>
         <div v-for="transaction in transactionDayGroup.transactions">
           <div class="w-full flex justify-between py-5 px-6 mb-5 border-2">
             <div>{{ transaction.categoryName }}</div>
-            <div>{{ transaction.amount }}</div>
+            <div>{{ formatMoney(transaction.amount) }}</div>
           </div>
         </div>
       </div>
@@ -52,6 +58,9 @@ export default {
         "/" +
         (date.getMonth() + 1).toString();
       return stringResult;
+    },
+    formatMoney(capital) {
+      return new Intl.NumberFormat("en-US").format(capital);
     }
   },
   components: {

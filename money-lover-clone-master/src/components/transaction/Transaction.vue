@@ -16,7 +16,7 @@
             <span class="w-1/3 text-gray-800">
               <p>+</p>
             </span>
-            <span class="w-2/3 text-right text-gray-600">{{ transactionMonthGroup.inflow }} VND </span>
+            <span class="w-2/3 text-right text-gray-600">{{ formatMoney(transactionMonthGroup.inflow) }} VND </span>
           </span>
         </div>
 
@@ -26,7 +26,7 @@
             <span class="w-1/3 text-gray-800">
               <p>-</p>
             </span>
-            <span class="w-2/3 text-right text-gray-600">{{ transactionMonthGroup.outflow }} VND </span>
+            <span class="w-2/3 text-right text-gray-600">{{ formatMoney(transactionMonthGroup.outflow) }} VND </span>
           </span>
         </div>
 
@@ -40,7 +40,7 @@
           <span class="w-1/3 flex">
             <span class="w-1/3 text-gray-800"></span>
           </span>
-          <span class="w-2/3 text-right text-gray-600">{{ transactionMonthGroup.inOutRate }} VND </span>
+          <span class="w-2/3 text-right text-gray-600">{{ formatMoney(transactionMonthGroup.inOutRate) }} VND </span>
         </div>
       </div>
     </div>
@@ -70,6 +70,11 @@ export default {
   computed: {
     transactionMonthGroup() {
       return this.$store.getters.transactionMonthGroup;
+    }
+  },
+  methods: {
+    formatMoney(capital) {
+      return new Intl.NumberFormat("en-US").format(capital);
     }
   },
   async mounted() {
