@@ -3,7 +3,7 @@ import axios from "axios";
 const state = {
   transactionMonthGroup: null,
   createTransactionErrors: [],
-  activeWalletInNavBar: null
+  activeWalletInNavBar: ""
 };
 
 const getters = {
@@ -14,6 +14,7 @@ const getters = {
     return state.createTransactionErrors;
   },
   getActiveWalletInNavBar(state) {
+    state.activeWalletInNavBar = localStorage.getItem("activeWalletInNavBar");
     return state.activeWalletInNavBar;
   }
 };
@@ -26,6 +27,7 @@ const mutations = {
     state.createTransactionErrors = createTransactionErrors;
   },
   setActiveWalletInNavBar(state, walletName) {
+    localStorage.setItem("activeWalletInNavBar", walletName);
     state.activeWalletInNavBar = walletName;
   },
   clearTransactionErrors(state) {

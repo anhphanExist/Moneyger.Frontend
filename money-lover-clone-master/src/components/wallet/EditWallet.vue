@@ -30,7 +30,7 @@
               id="add-wallet-id"
               class="flex-auto justify-between py-2 px-5 bg-gray-300 text-gray-600 border-2"
             >
-              {{ currentWalletBalance }}
+              {{ currentBalance }}
             </div>
           </div>
 
@@ -45,14 +45,17 @@
               VND
             </div>
           </div>
-          <p class="text-red-500 text-xl italic" v-if="!$v.required">
+          <p class="text-red-500 text-xl italic" v-if="!$v.walletNewName.required">
             All the fields must not be left empty
+          </p>
+          <p class="text-red-500 text-xl italic" v-if="errors.length > 0">
+            {{ errors }}
           </p>
           <div class="flex mt-4 mb-6 md:mb-0 justify-end">
             <button
               type="submit"
               class="flex-none mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded"
-              :disabled="$v.invalid"
+              :disabled="$v.$invalid"
             >
               Save
             </button>
@@ -78,10 +81,13 @@ export default {
   },
   computed: {
     selectedWallet() {
-      return this.$store.getters.getSelectedWallet;
+      return this.$store.getters.getSelectedWalletName;
     },
-    currentWalletBalance() {
-      return 10000;
+    currentBalance() {
+      return this.$store.getters.getSelectedWalletBalance;
+    },
+    errors() {
+      return this.$store.getters.updateWalletErrors;
     }
   },
   validations: {
@@ -90,10 +96,28 @@ export default {
     }
   },
   methods: {
-    onSave() {}
+    onSave: async function() {
+      const formData = {
+        name: this.selectedWallet,
+        newName: this.walletNewName,
+        balance: this.currentBalance
+      };
+
+      await this.$store.dispatch("updateWallet", {
+        name: formData.name,
+        newName: formData.newName,
+        balance: formData.balance
+      });
+      if (!this.errors.length > 0) {
+        await this.$router.push({ name: "wallet" });
+      }
+    }
   },
   mounted() {
     this.$store.commit("setCurrentScreen", "editWallet");
+  },
+  beforeDestroy() {
+    this.$store.commit("clearWalletErrors");
   }
 };
 </script>

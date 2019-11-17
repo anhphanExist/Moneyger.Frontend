@@ -140,7 +140,7 @@ export default {
   },
   computed: {
     selectedWallet() {
-      return this.$store.getters.getSelectedWallet;
+      return this.$store.getters.getSelectedWalletName;
     },
     walletList() {
       let walletList = this.$store.getters.walletList;
