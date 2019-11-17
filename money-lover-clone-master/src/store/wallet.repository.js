@@ -114,15 +114,15 @@ const actions = {
       await commit("updateWallet", []);
     }
   },
-  deleteWallet({ commit }, walletDeleteRequestDTO) {
-    axios
-      .post("wallet/delete", {
-        name: walletDeleteRequestDTO.name
-      })
-      .then(res => {
-        commit("deleteWallet", [...res.data.errors]);
-      })
-      .then(err => console.log(err));
+  async deleteWallet({ commit }, walletDeleteRequestDTO) {
+    let response = await axios.post("wallet/delete", {
+      name: walletDeleteRequestDTO.name
+    });
+    if (response.data.errors != null) {
+      commit("deleteWallet", [...response.data.errors]);
+    } else {
+      await commit("deleteWallet", []);
+    }
   },
   async transferWallet({ commit }, walletTransferRequestDTO) {
     let response = await axios.post("wallet/transfer", {

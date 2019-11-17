@@ -1,7 +1,14 @@
 import axios from "axios";
 
 const state = {
-  transactionMonthGroup: null,
+  transactionMonthGroup: {
+    month: 0,
+    year: 0,
+    inflow: 0,
+    outflow: 0,
+    inOutRate: 0,
+    transactionDayGroups: []
+  },
   createTransactionErrors: [],
   activeWalletInNavBar: ""
 };

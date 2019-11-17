@@ -22,7 +22,12 @@
             >
               Edit
             </button>
-            <button class="hover:text-blue-400 cursor-pointer">Delete</button>
+            <button
+              class="hover:text-blue-400 cursor-pointer"
+              @click.prevent="onDelete(wallet)"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -35,6 +40,9 @@ export default {
   computed: {
     walletList() {
       return this.$store.getters.walletList;
+    },
+    deleteErrors() {
+      return this.$store.getters.deleteWalletErrors;
     }
   },
   methods: {
@@ -45,6 +53,12 @@ export default {
     async routeToEditWallet(wallet) {
       await this.$store.dispatch("selectWallet", wallet);
       await this.$router.push({ name: "editWallet" });
+    },
+    async onDelete(wallet) {
+      await this.$store.dispatch("deleteWallet", wallet);
+      if (!this.deleteErrors.length > 0) {
+        await this.$router.go();
+      }
     }
   },
   async mounted() {
