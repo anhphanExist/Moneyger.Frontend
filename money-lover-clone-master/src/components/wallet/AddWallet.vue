@@ -54,7 +54,7 @@
           </p>
           <p
             class="text-red-500 text-xl italic"
-            v-if="!$v.initialBalance.maxValue"
+            v-if="!$v.initialBalance.maxValue || !$v.initialBalance.minValue"
           >
             You don't have that much money, cheater !!
           </p>
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { required, decimal, maxValue } from "vuelidate/lib/validators";
+import { required, decimal, maxValue, minValue } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -104,7 +104,8 @@ export default {
     initialBalance: {
       required,
       decimal,
-      maxValue: maxValue(79228162514264337593543950335)
+      maxValue: maxValue(79228162514264337593543950335),
+      minValue: minValue(-79228162514264337593543950335)
     }
   },
   methods: {
