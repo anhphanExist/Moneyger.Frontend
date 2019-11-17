@@ -63,7 +63,7 @@
             v-if="currentScreen == 'transaction'"
             >Add Transaction</router-link
           >
-
+          <p class="inline-block text-lg text-white ml-4 mt-2">{{ currentUser }}</p>
           <AccountDropDown class="ml-3" />
         </div>
       </div>
@@ -121,7 +121,10 @@ export default {
     },
     currentScreen() {
       return this.$store.getters.getCurrentScreen;
-    }
+    },
+      currentUser() {
+        return localStorage.getItem("username");
+      }
   },
   methods: {
     onLogout() {

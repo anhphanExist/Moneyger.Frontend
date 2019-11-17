@@ -45,10 +45,10 @@
               VND
             </div>
           </div>
-          <p class="text-red-500 text-xl italic" v-if="!$v.walletNewName.required">
+          <p class="text-red-500 text-xs italic" v-if="!$v.walletNewName.required">
             All the fields must not be left empty
           </p>
-          <p class="text-red-500 text-xl italic" v-if="errors.length > 0">
+          <p class="text-red-500 text-xs italic" v-if="errors.length > 0">
             {{ errors }}
           </p>
           <div class="flex mt-4 mb-6 md:mb-0 justify-end">

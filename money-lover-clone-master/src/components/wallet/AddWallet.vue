@@ -41,24 +41,24 @@
             </div>
           </div>
           <p
-            class="text-red-500 text-xl italic"
+            class="text-red-500 text-xs italic"
             v-show="!$v.walletName.required || !$v.initialBalance.required"
           >
             All the fields must not be left empty
           </p>
           <p
-            class="text-red-500 text-xl italic"
+            class="text-red-500 text-xs italic"
             v-if="!$v.initialBalance.decimal"
           >
             Balance must be decimal types
           </p>
           <p
-            class="text-red-500 text-xl italic"
+            class="text-red-500 text-xs italic"
             v-if="!$v.initialBalance.maxValue || !$v.initialBalance.minValue"
           >
             You don't have that much money, cheater !!
           </p>
-          <p class="text-red-500 text-xl italic" v-if="errors.length > 0">
+          <p class="text-red-500 text-xs italic" v-if="errors.length > 0">
             {{ errors }}
           </p>
           <div class="flex mt-4 mb-6 md:mb-0 justify-end">

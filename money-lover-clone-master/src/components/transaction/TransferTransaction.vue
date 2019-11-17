@@ -91,19 +91,17 @@
               placeholder="Your note"
               v-model="note"
             />
-            <p class="text-gray-600 text-xs italic">
-              Make it as long and as crazy as you'd like
-            </p>
-            <p class="text-red-500 text-xl italic" v-if="!$v.required">
+            
+            <p class="text-red-500 text-xs italic" v-if="!$v.required">
               All the fields must not be left empty
             </p>
-            <p class="text-red-500 text-xl italic" v-if="!$v.amount.decimal">
+            <p class="text-red-500 text-xs italic" v-if="!$v.amount.decimal">
               Amount must be numeric types
             </p>
-            <p class="text-red-500 text-xl italic" v-if="!$v.amount.maxValue || !$v.amount.minValue">
+            <p class="text-red-500 text-xs italic" v-if="!$v.amount.maxValue || !$v.amount.minValue">
               You don't have that much money, cheater !!
             </p>
-            <p class="text-red-500 text-xl italic" v-if="errors.length > 0">
+            <p class="text-red-500 text-xs italic" v-if="errors.length > 0">
               {{ errors }}
             </p>
           </div>

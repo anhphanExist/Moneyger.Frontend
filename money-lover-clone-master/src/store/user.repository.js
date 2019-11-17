@@ -4,7 +4,7 @@ import router from "../router";
 const state = {
   loginErrors: [],
   signupErrors: [],
-  username: null
+  changePasswordErrors: []
 };
 
 const getters = {
@@ -14,8 +14,8 @@ const getters = {
   signupErrors(state) {
     return state.signupErrors;
   },
-  getUsername(state) {
-    return state.username;
+  changePasswordErrors(state) {
+    return state.changePasswordErrors;
   }
 };
 
@@ -28,11 +28,19 @@ const mutations = {
   },
   storeSignupErrors(state, errors) {
     state.signupErrors = errors;
+  },
+  storeChangePasswordErrors(state, errors) {
+    state.changePasswordErrors = errors;
+  },
+  clearErrors(state) {
+    state.loginErrors = [];
+    state.signupErrors = [];
+    state.changePasswordErrors = [];
   }
 };
 
 const actions = {
-  signup({ commit}, authData) {
+  signup({ commit }, authData) {
     axios
       .post("/signup", {
         username: authData.username,
@@ -47,6 +55,7 @@ const actions = {
             "user",
             window.btoa(authData.username + ":" + authData.password)
           );
+          localStorage.setItem("username", authData.username);
           router.push({ name: "transaction" });
         }
       })
@@ -54,7 +63,6 @@ const actions = {
         console.log(error);
       });
   },
-
   login({ commit }, authData) {
     axios
       .post("/login", {
@@ -70,6 +78,7 @@ const actions = {
             "user",
             window.btoa(authData.username + ":" + authData.password)
           );
+          localStorage.setItem("username", authData.username);
           router.push({ name: "transaction" });
         }
       })
@@ -77,10 +86,30 @@ const actions = {
         console.log(error);
       });
   },
-
   logout() {
     localStorage.clear();
     router.push({ name: "login" });
+  },
+  async changePassword({ commit }, changePasswordRequestDTO) {
+    let response = await axios.post("/change-password", {
+      username: changePasswordRequestDTO.username,
+      password: changePasswordRequestDTO.password,
+      newPassword: changePasswordRequestDTO.newPassword
+    });
+
+    if (response.data.success) {
+      commit("storeChangePasswordErrors", []);
+      localStorage.setItem(
+        "user",
+        window.btoa(
+          changePasswordRequestDTO.username +
+            ":" +
+            changePasswordRequestDTO.newPassword
+        )
+      );
+    } else {
+      commit("storeChangePasswordErrors", [response.data.errors]);
+    }
   }
 };
 
