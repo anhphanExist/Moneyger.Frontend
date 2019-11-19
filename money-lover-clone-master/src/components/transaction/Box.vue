@@ -19,10 +19,13 @@
         </div>
         <div class="w-full border-t-2 my-10"></div>
         <div v-for="transaction in transactionDayGroup.transactions">
-          <div class="w-full flex justify-between py-5 px-6 mb-5 border-2">
+          <div class="w-full flex justify-between py-5 px-6 mt-5 border-2">
             <div>{{ transaction.categoryName }}</div>
             <div>{{ formatMoney(transaction.amount) }}</div>
           </div>
+          <span class="w-full flex ml-8 text-xs">
+            {{ transaction.note }}
+          </span>
         </div>
       </div>
       <divider />
