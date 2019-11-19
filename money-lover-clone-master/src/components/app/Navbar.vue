@@ -1,23 +1,24 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
-    <div class="w-1/5">
-      <div class="flex items-center flex-shrink-0 text-yellow-400 mr-6">
+  <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6 pl-0">
+    <div class="w-1/5 pl-3">
+      <div class="flex justify-center flex-shrink-0 text-yellow-400">
         <router-link
           tag="span"
-          class="font-bold text-3xl tracking-tight cursor-pointer"
-          v-bind:to="'transaction'"
-          >Moneyger</router-link
+          class="font-bold text-3xl tracking-tight cursor-pointer text-center"
+          v-bind:to="'authenticated'"
+          >Moneyger
+        </router-link
         >
       </div>
     </div>
-    <div class="w-4/5">
+    <div class="w-4/5 pl-5">
       <div class="flex w-full">
         <div class="w-2/3">
           <div class="text-sm lg:flex-grow">
             <!-- Wallet region -->
-            <div class="inline-block mr-4 text-white text-lg">Wallet</div>
+            <!-- <div class="inline-block mr-4 text-white text-lg">Wallet</div> -->
 
-            <div class="inline-block relative w-64">
+            <div class="inline-block relative w-64 ml-12">
               <el-select v-model="activeWallet">
                 <el-option
                   v-for="option in walletNameOptions"
@@ -29,7 +30,7 @@
             </div>
 
             <div class="inline-block ml-5 text-white">
-              <p class="inline-block text-lg">Total Wealth: </p>
+              <p class="inline-block text-lg ">Total Wealth: </p>
               <p class="inline-block text-2xl text-yellow-400 pl-10 font-bold">{{ totalWealth }}</p>
               <p class="inline-block text-lg pl-4">VND</p>
             </div>

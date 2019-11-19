@@ -76,8 +76,13 @@ const routes = [
         component: Help
       },
       {
-        path: "error",
-        name: "error",
+        path: "budget",
+        name: "budget",
+        component: Error
+      },
+      {
+        path: "report",
+        name: "report",
         component: Error
       },
       {
@@ -122,7 +127,8 @@ const routes = [
 
 const router = new VueRouter({
   mode: "history",
-  routes
+  routes,
+  linkExactActiveClass: "active-menu"
 });
 
 // Using NProgress to show progress bar on each router change

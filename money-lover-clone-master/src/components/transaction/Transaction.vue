@@ -1,23 +1,46 @@
 <template>
   <div>
     <div
-      class="w-100 h-24 bg-white hover:bg-gray-100 py-5 px-12 text-2xl text-gray-500 font-medium flex justify-start items-center cursor-pointer"
+      class="h-24 w-full bg-white px-4 py-5 text-xl text-gray-500 font-medium flex justify-start items-center cursor-pointer"
     >
-      Select Month and Year to show Transaction during that period of time
+      <div class="flex ml-12">
+        <div class="w-1/4 mr-2">
+          <label for="month-selector" class="text-gray-900">Month</label>
+        </div>
+        <div class="w-1/4 mr-6">
+          <select
+            name="month"
+            v-model="monthSelect"
+            id="month-selector"
+            class="bg-gray-200 focus:outline-none"
+          >
+            <option v-for="month in 12" :value="month">{{ month }}</option>
+          </select>
+        </div>
+
+        <!-- Year select -->
+
+        <div class="w-1/4">
+          <label for="year-selector" class="text-gray-900">Year</label>
+        </div>
+        <div class="w-1/4">
+          <select
+            name="year"
+            v-model="yearSelect"
+            id="year-selector"
+            class="bg-gray-200 focus:outline-none"
+          >
+            <option v-for="year in 50" :value="year + 1969">
+              {{
+              year + 1969
+              }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
     <divider />
-    <form class="w-100 h-24 bg-gray-400 shadow-inner">
-      <select name="month" v-model="monthSelect">
-        <option v-for="month in 12" :key="month" :value="month">{{
-          month
-        }}</option>
-      </select>
-      <select name="year" v-model="yearSelect">
-        <option v-for="year in 50" :key="year" :value="year + 1969">{{
-          year + 1969
-        }}</option>
-      </select>
-    </form>
+    <form class="w-100 h-24 bg-gray-400 shadow-inner"></form>
     <divider />
 
     <!-- Cash Flow -->
@@ -29,9 +52,9 @@
             <span class="w-1/6 text-gray-800">
               <p>+</p>
             </span>
-            <span class="w-5/6 text-right text-gray-600"
-              >{{ formatMoney(transactionMonthGroup.inflow) }} VND
-            </span>
+            <span
+              class="w-5/6 text-right text-gray-600"
+            >{{ formatMoney(transactionMonthGroup.inflow) }} VND</span>
           </span>
         </div>
 
@@ -41,9 +64,9 @@
             <span class="w-1/6 text-gray-800">
               <p>-</p>
             </span>
-            <span class="w-5/6 text-right text-gray-600"
-              >{{ formatMoney(transactionMonthGroup.outflow) }} VND
-            </span>
+            <span
+              class="w-5/6 text-right text-gray-600"
+            >{{ formatMoney(transactionMonthGroup.outflow) }} VND</span>
           </span>
         </div>
 
@@ -57,9 +80,9 @@
           <span class="w-1/2 flex">
             <span class="w-1/6 text-gray-800"></span>
           </span>
-          <span class="w-5/6 text-right text-gray-600"
-            >{{ formatMoney(transactionMonthGroup.inOutRate) }} VND
-          </span>
+          <span
+            class="w-5/6 text-right text-gray-600"
+          >{{ formatMoney(transactionMonthGroup.inOutRate) }} VND</span>
         </div>
       </div>
     </div>
@@ -72,9 +95,7 @@
 
     <divider />
 
-    <transaction-day-groups
-      v-if="transactionMonthGroup.transactionDayGroups.length > 0"
-    ></transaction-day-groups>
+    <transaction-day-groups v-if="transactionMonthGroup.transactionDayGroups.length > 0"></transaction-day-groups>
   </div>
 </template>
 
