@@ -84,7 +84,7 @@ const actions = {
       date: transactionRequestDTO.date
     });
 
-    if (response.data.errors != null) {
+    if (response.data.errors.length > 0) {
       await commit("createTransaction", [...response.data.errors]);
     } else {
       await commit("createTransaction", []);

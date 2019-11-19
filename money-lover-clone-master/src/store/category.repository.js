@@ -1,25 +1,25 @@
 import axios from "axios";
 const state = {
   categoryList: [],
-    selectedCategoryType: "Outflow"
+  selectedCategoryType: "Outflow"
 };
 
 const getters = {
   categoryList(state) {
     return state.categoryList;
   },
-    selectedCategoryType(state) {
-      return state.selectedCategoryType;
-    }
+  selectedCategoryType(state) {
+    return state.selectedCategoryType;
+  }
 };
 
 const mutations = {
   listCategory(state, categoryList) {
     state.categoryList = categoryList;
   },
-    setSelectedCategoryType(state, categoryType) {
-      state.selectedCategoryType = categoryType;
-    }
+  setSelectedCategoryType(state, categoryType) {
+    state.selectedCategoryType = categoryType;
+  }
 };
 
 const actions = {

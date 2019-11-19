@@ -2,6 +2,10 @@
   <div>
     <div class="w-100 h-24">
       <div class="w-100 bg-white p-5">
+        <p class="text-red-500 text-xl italic" v-if="!walletList.length > 0">
+          You are currently having no wallet, you must create a wallet to
+          continue experiencing this fantastic service
+        </p>
         <form class="w-full py-5 px-6 mt-5 border-2" @submit.prevent="onSave">
           <div class="w-full text-center font-bold text-3xl mt-3 mb-8">
             Add Wallet
@@ -84,7 +88,12 @@
 </template>
 
 <script>
-import { required, decimal, maxValue, minValue } from "vuelidate/lib/validators";
+import {
+  required,
+  decimal,
+  maxValue,
+  minValue
+} from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -95,6 +104,9 @@ export default {
   computed: {
     errors() {
       return this.$store.getters.createWalletErrors;
+    },
+    walletList() {
+      return this.$store.getters.walletList;
     }
   },
   validations: {

@@ -7,7 +7,9 @@
         <div class="w-1/5 h-full bg-white z-50">
           <!-- Menu Buttons -->
           <div v-for="item in menuItems" :key="item.id">
-            <menu-button v-if="item.router === 'Yes'" :to="item.to">{{ item.item }}</menu-button>
+            <menu-button v-if="item.router === 'Yes'" :to="item.to">{{
+              item.item
+            }}</menu-button>
             <menu-button v-else>{{ item.item }}</menu-button>
             <divider />
           </div>
@@ -71,6 +73,10 @@ export default {
   async mounted() {
     await this.$store.dispatch("listCategory");
     await this.$store.dispatch("listWallet");
+    let walletList = this.$store.getters.walletList;
+    if (!walletList.length > 0) {
+      await this.$router.push({ name: "addWallet" });
+    }
   }
 };
 </script>

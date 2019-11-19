@@ -47,7 +47,7 @@ const actions = {
         password: authData.password
       })
       .then(res => {
-        if (res.data.errors != null) {
+        if (res.data.errors.length > 0) {
           commit("storeSignupErrors", [...res.data.errors]);
         } else {
           commit("authUser", authData.username);
@@ -56,7 +56,7 @@ const actions = {
             window.btoa(authData.username + ":" + authData.password)
           );
           localStorage.setItem("username", authData.username);
-          router.push({ name: "transaction" });
+          router.push({ name: "addWallet" });
         }
       })
       .catch(error => {
@@ -70,7 +70,7 @@ const actions = {
         password: authData.password
       })
       .then(res => {
-        if (res.data.errors != null) {
+        if (res.data.errors.length > 0) {
           commit("storeLoginErrors", [...res.data.errors]);
         } else {
           commit("authUser", authData.username);

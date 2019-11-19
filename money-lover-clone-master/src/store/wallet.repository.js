@@ -96,7 +96,7 @@ const actions = {
       name: newWallet.name,
       balance: newWallet.balance
     });
-    if (response.data.errors != null) {
+    if (response.data.errors.length > 0) {
       await commit("createWallet", [...response.data.errors]);
     } else {
       await commit("createWallet", []);
@@ -108,7 +108,7 @@ const actions = {
       newName: walletUpdateRequestDTO.newName,
       balance: walletUpdateRequestDTO.balance
     });
-    if (response.data.errors != null) {
+    if (response.data.errors.length > 0) {
       await commit("updateWallet", [...response.data.errors]);
     } else {
       await commit("updateWallet", []);
@@ -118,7 +118,7 @@ const actions = {
     let response = await axios.post("wallet/delete", {
       name: walletDeleteRequestDTO.name
     });
-    if (response.data.errors != null) {
+    if (response.data.errors.length > 0) {
       commit("deleteWallet", [...response.data.errors]);
     } else {
       await commit("deleteWallet", []);
@@ -131,7 +131,7 @@ const actions = {
       amount: walletTransferRequestDTO.amount,
       note: walletTransferRequestDTO.note
     });
-    if (response.data.errors != null) {
+    if (response.data.errors.length > 0) {
       await commit("transferWallet", [...response.data.errors]);
     } else {
       await commit("transferWallet", []);

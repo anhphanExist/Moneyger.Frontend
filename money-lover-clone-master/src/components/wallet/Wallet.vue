@@ -4,6 +4,10 @@
       <p class="text-red-500 text-xl italic" v-if="deleteErrors.length > 0">
         Failed to delete wallet. Errors: {{ deleteErrors }}
       </p>
+      <p class="text-red-500 text-xl italic" v-if="!walletList.length > 0">
+        You are currently having no wallet, you must create a wallet to
+        continue experiencing this fantastic service
+      </p>
       <div
         class="w-100 flex flex-col bg-white p-5"
         v-for="(wallet, index) in walletList"
