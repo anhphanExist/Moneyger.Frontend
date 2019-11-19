@@ -13,18 +13,21 @@
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
+              for="grid-state-wallet"
               >Wallet</label
             >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
+                id="grid-state-wallet"
                 v-model="selectedWallet"
               >
-                <option v-for="option in walletNameList" :value="option">{{
-                  option
-                }}</option>
+                <option
+                  v-for="option in walletNameList"
+                  :key="option"
+                  :value="option"
+                  >{{ option }}</option
+                >
               </select>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -45,16 +48,16 @@
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
+              for="grid-state-categorytype"
               >Category Type</label
             >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
+                id="grid-state-categorytype"
                 v-model="selectedCategoryType"
               >
-                <option v-for="categoryType in categoryTypeList">{{
+                <option v-for="categoryType in categoryTypeList" :key="categoryType">{{
                   categoryType
                 }}</option>
               </select>
@@ -77,16 +80,16 @@
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
+              for="grid-state-category"
               >Category</label
             >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
+                id="grid-state-category"
                 v-model="selectedCategory"
               >
-                <option v-for="category in categoryNameList">{{
+                <option v-for="category in categoryNameList" :key="category">{{
                   category
                 }}</option>
               </select>
@@ -138,7 +141,7 @@
               placeholder="Your note"
               v-model="note"
             />
-            
+
             <p
               class="text-red-500 text-xs italic"
               v-if="
@@ -153,7 +156,10 @@
             <p class="text-red-500 text-xs italic" v-if="!$v.amount.decimal">
               Amount must be decimal type
             </p>
-            <p class="text-red-500 text-xs italic" v-if="!$v.amount.maxValue || !$v.amount.minValue">
+            <p
+              class="text-red-500 text-xs italic"
+              v-if="!$v.amount.maxValue || !$v.amount.minValue"
+            >
               You don't have that much money, cheater !!
             </p>
             <p class="text-red-500 text-xs italic" v-if="errors.length > 0">
@@ -189,7 +195,12 @@
 </template>
 
 <script>
-import { required, decimal, maxValue, minValue } from "vuelidate/lib/validators";
+import {
+  required,
+  decimal,
+  maxValue,
+  minValue
+} from "vuelidate/lib/validators";
 export default {
   data() {
     return {

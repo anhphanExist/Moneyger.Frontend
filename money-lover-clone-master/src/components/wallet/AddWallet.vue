@@ -12,33 +12,33 @@
           </div>
 
           <div class="w-full flex mb-5">
-            <label for="add-wallet-id" class="flex w-1/6 items-center mr-6"
+            <label for="add-wallet-id-walletname" class="flex w-1/6 items-center mr-6"
               >Wallet Name</label
             >
             <input
-              id="add-wallet-id"
+              id="add-wallet-id-walletname"
               class="flex-auto justify-between py-2 px-5 border-2"
               v-model="walletName"
             />
           </div>
 
           <div class="w-full flex mb-5">
-            <label for="add-wallet-id" class="flex w-1/6 items-center mr-6"
+            <label for="add-wallet-id-balance" class="flex w-1/6 items-center mr-6"
               >Initial Balance</label
             >
             <input
-              id="add-wallet-id"
+              id="add-wallet-id-balance"
               class="flex-auto justify-between py-2 px-5 border-2"
               v-model="initialBalance"
             />
           </div>
 
           <div class="w-full flex mb-5">
-            <label for="add-wallet-id" class="flex w-1/6 items-center mr-6"
+            <label for="add-wallet-id-currency" class="flex w-1/6 items-center mr-6"
               >Currency</label
             >
             <div
-              id="add-wallet-id"
+              id="add-wallet-id-currency"
               class="flex-auto justify-between py-2 px-5 bg-gray-300 text-gray-600 border-2"
             >
               VND

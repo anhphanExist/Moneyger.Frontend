@@ -3,17 +3,17 @@
     <div
       class="w-100 h-24 bg-white hover:bg-gray-100 py-5 px-12 text-2xl text-gray-500 font-medium flex justify-start items-center cursor-pointer"
     >
-      Select Month and Year here
+      Select Month and Year to show Transaction during that period of time
     </div>
     <divider />
-    <form
-      class="w-100 h-24 bg-gray-400 shadow-inner"
-    >
+    <form class="w-100 h-24 bg-gray-400 shadow-inner">
       <select name="month" v-model="monthSelect">
-        <option v-for="month in 12" :value="month">{{ month }}</option>
+        <option v-for="month in 12" :key="month" :value="month">{{
+          month
+        }}</option>
       </select>
       <select name="year" v-model="yearSelect">
-        <option v-for="year in 50" :value="year + 1969">{{
+        <option v-for="year in 50" :key="year" :value="year + 1969">{{
           year + 1969
         }}</option>
       </select>
@@ -133,17 +133,15 @@ export default {
     }
   },
   async mounted() {
-    let self = this;
-    self.$store.dispatch("listWallet").then(res => {
-      let currentMonth = self.$store.getters.getSelectedMonth;
-      let currentYear = self.$store.getters.getSelectedYear;
-      let walletList = [...self.$store.getters.walletList];
-      let firstWalletName = walletList.length > 0 ? walletList[0].name : null;
-      self.$store.dispatch("getTransactionMonthGroup", {
-        walletName: firstWalletName,
-        month: currentMonth,
-        year: currentYear
-      });
+    await self.$store.dispatch("listWallet");
+    let currentMonth = this.$store.getters.getSelectedMonth;
+    let currentYear = this.$store.getters.getSelectedYear;
+    let walletList = [...this.$store.getters.walletList];
+    let firstWalletName = walletList.length > 0 ? walletList[0].name : null;
+    await this.$store.dispatch("getTransactionMonthGroup", {
+      walletName: firstWalletName,
+      month: currentMonth,
+      year: currentYear
     });
     this.$store.commit("setCurrentScreen", "transaction");
   }

@@ -14,13 +14,13 @@
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
+              for="grid-state-fromwallet"
               >From Wallet</label
             >
             <div class="relative">
               <label
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
+                id="grid-state-fromwallet"
               >
                 {{ selectedWallet }}
               </label>
@@ -30,13 +30,13 @@
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
+              for="grid-state-towallet"
               >To Wallet</label
             >
             <div class="relative">
               <select
                 class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
+                id="grid-state-towallet"
                 v-model="destWalletName"
               >
                 <option v-for="wallet in walletList" v-bind:key="wallet.name">{{
