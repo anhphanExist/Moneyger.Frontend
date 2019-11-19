@@ -39,7 +39,7 @@
         <p
           class="text-red-500 text-xs italic"
           v-if="!$v.password.minLen"
-        >Password must be at least 4 characters</p>
+        >Password must be at least 6 characters</p>
       </div>
       <div class="flex sm:flex-row flex-col items-center justify-between mb-6 md:mb-16">
         <button
@@ -89,7 +89,7 @@ export default {
     },
     password: {
       required,
-      minLen: minLength(4)
+      minLen: minLength(6)
     }
   },
   methods: {

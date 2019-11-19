@@ -133,7 +133,7 @@ export default {
     }
   },
   async mounted() {
-    await self.$store.dispatch("listWallet");
+    await this.$store.dispatch("listWallet");
     let currentMonth = this.$store.getters.getSelectedMonth;
     let currentYear = this.$store.getters.getSelectedYear;
     let walletList = [...this.$store.getters.walletList];
