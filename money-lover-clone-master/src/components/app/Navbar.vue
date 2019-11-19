@@ -1,7 +1,7 @@
 <template>
-  <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
-    <div class="w-1/5">
-      <div class="flex justify-center flex-shrink-0 text-yellow-400 mr-4">
+  <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6 pl-0">
+    <div class="w-1/5 pl-3">
+      <div class="flex justify-center flex-shrink-0 text-yellow-400">
         <router-link
           tag="span"
           class="font-bold text-3xl tracking-tight cursor-pointer text-center"
@@ -11,7 +11,7 @@
         >
       </div>
     </div>
-    <div class="w-4/5">
+    <div class="w-4/5 pl-5">
       <div class="flex w-full">
         <div class="w-2/3">
           <div class="block lg:hidden">
