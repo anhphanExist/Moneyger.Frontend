@@ -36,6 +36,7 @@
           </select>
         </div>
       </div>
+      <p class="text-base pl-10">Select Month and Year to show Transaction during that period of time</p>
     </div>
     <divider />
     <form class="w-100 h-10 bg-gray-400 shadow-inner"></form>
