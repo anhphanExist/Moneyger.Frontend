@@ -31,16 +31,14 @@
             class="bg-gray-200 focus:outline-none"
           >
             <option v-for="year in 50" :value="year + 1969">
-              {{
-              year + 1969
-              }}
+              {{ year + 1969 }}
             </option>
           </select>
         </div>
       </div>
     </div>
     <divider />
-    <form class="w-100 h-24 bg-gray-400 shadow-inner"></form>
+    <form class="w-100 h-10 bg-gray-400 shadow-inner"></form>
     <divider />
 
     <!-- Cash Flow -->
@@ -52,9 +50,9 @@
             <span class="w-1/6 text-gray-800">
               <p>+</p>
             </span>
-            <span
-              class="w-5/6 text-right text-gray-600"
-            >{{ formatMoney(transactionMonthGroup.inflow) }} VND</span>
+            <span class="w-5/6 text-right text-gray-600"
+              >{{ formatMoney(transactionMonthGroup.inflow) }} VND</span
+            >
           </span>
         </div>
 
@@ -64,9 +62,9 @@
             <span class="w-1/6 text-gray-800">
               <p>-</p>
             </span>
-            <span
-              class="w-5/6 text-right text-gray-600"
-            >{{ formatMoney(transactionMonthGroup.outflow) }} VND</span>
+            <span class="w-5/6 text-right text-gray-600"
+              >{{ formatMoney(transactionMonthGroup.outflow) }} VND</span
+            >
           </span>
         </div>
 
@@ -80,9 +78,9 @@
           <span class="w-1/2 flex">
             <span class="w-1/6 text-gray-800"></span>
           </span>
-          <span
-            class="w-5/6 text-right text-gray-600"
-          >{{ formatMoney(transactionMonthGroup.inOutRate) }} VND</span>
+          <span class="w-5/6 text-right text-gray-600"
+            >{{ formatMoney(transactionMonthGroup.inOutRate) }} VND</span
+          >
         </div>
       </div>
     </div>
@@ -95,7 +93,9 @@
 
     <divider />
 
-    <transaction-day-groups v-if="transactionMonthGroup.transactionDayGroups.length > 0"></transaction-day-groups>
+    <transaction-day-groups
+      v-if="transactionMonthGroup.transactionDayGroups.length > 0"
+    ></transaction-day-groups>
   </div>
 </template>
 
