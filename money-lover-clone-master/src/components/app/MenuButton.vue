@@ -1,6 +1,6 @@
 <template>
   <component
-    class="cursor-pointer w-100 h-24 bg-white hover:bg-blue-400 text-gray-800 hover:text-white flex items-center justify-center"
+    class = "cursor-pointer w-100 h-24 bg-white hover:bg-blue-400 text-gray-800 hover:text-white flex items-center justify-center"
     :is="type"
     :to="to"
   >

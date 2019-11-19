@@ -51,13 +51,13 @@ export default {
           id: "3",
           item: "Report",
           router: "Yes",
-          to: "/authenticated/error"
+          to: "/authenticated/report"
         },
         {
           id: "4",
           item: "Budget",
           router: "Yes",
-          to: "/authenticated/error"
+          to: "/authenticated/budget"
         },
         {
           id: "5",

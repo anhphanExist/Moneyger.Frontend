@@ -10,5 +10,5 @@ export default {
 };
 </script>
 
-<style src="./assets/tailwind.css">
+<style src="../public/build/tailwind.css">
 </style>

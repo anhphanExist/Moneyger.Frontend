@@ -1,12 +1,14 @@
 {
   "name": "chigga",
   "version": "1.0.0",
-  "description": "Giúp đỡ thằng Chigga",
-  "author": "Dat Protocol",
+  "description": "Moneyger",
+  "author": "Team 16",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "watch": "postcss assets/tailwind.css",
+    "build-css": "postcss src/assets/tailwind.css -o public/build/tailwind.css"
   },
   "main": "index.js",
   "dependencies": {

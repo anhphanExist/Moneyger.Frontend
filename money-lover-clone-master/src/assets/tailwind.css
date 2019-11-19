@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.active-menu {
+  @apply bg-blue-400 text-white;
+}
+
 .btn {
   @apply inline-block px-5 py-3 rounded-lg text-sm uppercase tracking-wider font-semibold;
 }
