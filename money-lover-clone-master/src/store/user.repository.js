@@ -56,7 +56,7 @@ const actions = {
             window.btoa(authData.username + ":" + authData.password)
           );
           localStorage.setItem("username", authData.username);
-          router.push({ name: "Transaction" });
+          router.push({ name: "transaction" });
         }
       })
       .catch(error => {
