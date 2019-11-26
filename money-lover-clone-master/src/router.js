@@ -117,11 +117,11 @@ const routes = [
   },
   {
     path: "/",
-    redirect: "/login"
+    redirect: "/authenticated/transaction"
   },
   {
     path: "*",
-    redirect: "/login"
+    redirect: "/authenticated/transaction"
   }
 ];
 
