@@ -15,7 +15,7 @@ Vue.use(ElementUI, { locale });
 
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = "http://localhost:5000/api/Moneyger";
+axios.defaults.baseURL = "http://localhost:52347/api/Moneyger";
 axios.defaults.headers.get["Accepts"] = "application/json";
 
 axios.interceptors.request.use(config => {
